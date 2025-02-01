@@ -30,7 +30,7 @@ import { HomePage } from "../e2e/features/shopping_cart/elements/home_page.eleme
  * Adicionando a função para navegar até a tela de cartões.
  * //cy.contains('Compre online').should('be.visible').click()
  */
-Cypress.Commands.add('DadoQueEstejaNaTelaDeCartoes', () => {
+Cypress.Commands.add('Add_to_Cart', (Size="Blue", Color) => {
     cy.visit('/');
     // cria um stub ou seja uma chamada fake, para não ter que abrir uma nova aba.
     const stub = cy.stub().as('open')
@@ -49,7 +49,7 @@ Cypress.Commands.add('DadoQueEstejaNaTelaDeCartoes', () => {
     cy.contains(HomePage.TXT_CARTOES).should('be.visible').click()
 })
 
-Cypress.Commands.add('GerarCNPJ' as any, () => {
+Cypress.Commands.add('GerarCNPJ', () => {
     let create_array = (total, numero) => Array.from(Array(total), () => number_random(numero));
     let number_random = (number) => (Math.round(Math.random() * number));
     let mod = (dividendo, divisor) => Math.round(dividendo - (Math.floor(dividendo / divisor) * divisor));
