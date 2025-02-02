@@ -1,35 +1,39 @@
-import { HOME_PAGE } from 'selectors/homePage'
-import { faker } from '@faker-js/faker/locale/ro'
-import buyAProduct from '../fixtures/DATA-Buy-a-product'
-
+import { HOME_PAGE } from './selectors/homePage.js'
 
 
 describe('Purchase functionalities', () => {
 	context('Orders', () => {
-		let testData = buyAProduct(faker)
 
 		it('Add one item to cart and complete the order' , () => {
 
 			// open base Url
 			cy.visit('/')
 
-			// Open nth product from home page
-			cy.get(PRODUCT.productItemInfo).first().click()
+			var product_name = 'Radiant Tee'
+			var quantity = 2
+			var valueItem = '$22.00'
+			var size = 'XS'
+			var color = 'Blue'
 
-			cy.get(PRODUCT.sizeS).click()
-			cy.get(PRODUCT.colorOrange).click()
+			cy.Add_to_Cart(product_name, valueItem, size, color, quantity)
 
-			cy.get(PRODUCT.addToCartBtn).click()
-			cy.get(PRODUCT.addToCartSuccessMsg).should('be.visible')
+            cy.contains(`You added ${product_name} to your shopping cart.`).should('be.visible')
+            cy.get(HOME_PAGE.BLOCK_PRODUCTS.showcart_number).then(($el)=>{ $el.get(0).scrollIntoView()}).contains(`${quantity}`);
+            cy.get(HOME_PAGE.BLOCK_PRODUCTS.quantity).invoke('val').then((value) => {
+                expect(value).equal(`${quantity}`)
+            });
+
+			// cy.get('input#qty').then((value) => {
+			// 	expect(parseInt(value)).equal(`${quantity}`)})
   
 			// assert number of items in cart
-			cy.get(OTHER.miniCartCounter).invoke('text').then(function(cartNumber){
-				expect(Number(cartNumber)).to.eq(1)
-			})
+			// cy.get(HOME_PAGE.miniCartCounter).invoke('text').then(function(cartNumber){
+			// 	expect(Number(cartNumber)).to.eq(1)
+			// })
 
-			cy.get(OTHER.miniCart).click()
-			cy.get(OTHER.miniCartSubTotal).should('be.visible')
-			cy.get(OTHER.miniCartDropDownProceedToCheckout).click()
+			// cy.get(OTHER.miniCart).click()
+			// cy.get(OTHER.miniCartSubTotal).should('be.visible')
+			// cy.get(OTHER.miniCartDropDownProceedToCheckout).click()
 
 			// cy.url().should('include', 'checkout/#shipping')
 

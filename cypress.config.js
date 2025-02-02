@@ -1,12 +1,14 @@
-import { defineConfig } from "cypress";
+const { defineConfig } = require("cypress");
 const { allureCypress } = require('allure-cypress/reporter')
+const os = require('os')
 
+const env = process.env.NODE_ENV || 'dev'
 
-function removeUrlSuffix(text) {
+function removeUrlSuffix(text='') {
   return text.replace(/URL=.*/, '')
 }
 
-export default defineConfig({
+module.exports = defineConfig({
   viewportWidth: 1440,
   viewportHeight: 900,
   defaultCommandTimeout: 30000,
@@ -20,13 +22,13 @@ export default defineConfig({
   },
   
   e2e: {
-    baseUrl: "https://www.vr.com.br/",
+    baseUrl: "https://magento.softwaretestingboard.com/",
     chromeWebSecurity: false,
     includeShadowDom: true,
     retries: 1,
     setupNodeEvents(on, config) {
       // implement node event listeners here
-      let browserName = null
+      let browserName = ''
 
       on('before:browser:launch', (browser = {}, launchOptions) => {
         browserName = browser.name || 'electron'
@@ -47,7 +49,7 @@ export default defineConfig({
     },
     // Para setar o caminho dos testes.
     specPattern: [
-      "cypress/e2e/features/**/*.cy.*",
+      "cypress/e2e/specs/*.spec.js",
    ],
   },
 });

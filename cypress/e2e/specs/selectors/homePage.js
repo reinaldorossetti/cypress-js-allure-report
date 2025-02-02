@@ -1,7 +1,7 @@
 // home page elements/locators.
 
 export const HOME_PAGE = {
-	
+
 	BASE: {
 		footerLinks: '.footer li a',
 		searchInput: '[id="search"]',
@@ -9,12 +9,12 @@ export const HOME_PAGE = {
 	},
 
 	COMMON: {
-		nextBtn : '[data-role="opc-continue"]',
+		nextBtn: '[data-role="opc-continue"]',
 		loadingSpinner: '[title="Loading..."]',
 	},
 
 	NAVBAR: {
-		whatsNew : '[id="ui-id-3"]',
+		whatsNew: '[id="ui-id-3"]',
 		women: '[id="ui-id-4"]',
 		men: '[id="ui-id-5"]',
 		gear: '[id="ui-id-6"]',
@@ -23,6 +23,20 @@ export const HOME_PAGE = {
 		navbarLinks: '.navigation .level-top > a',
 	},
 
-	blocksPromoLinks : '.blocks-promo a',
+	// selectors may be grouped per component 
+	BLOCK_PRODUCTS: {
+		productItem: '.product-item',
+		productItemPhoto: '.product-item-photo',
+		productItemInfo: '.product-item-info',
+		productItemName: '.product-item-name',
+		addToCartBtn: '#product-addtocart-button',
+		addToCartSuccessMsg: '[data-ui-id="message-success"]',
+		priceContainer: '.price-container',
+		sorter: '[id="sorter"]',
+		quantity: 'input#qty',
+		showcart_number: '.counter-number',
+	},
+
+	blocksPromoLinks: '.blocks-promo a',
 
 }

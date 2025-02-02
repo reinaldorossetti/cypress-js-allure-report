@@ -1,49 +1,8 @@
 
 export const SELECTORS = {
 	
-	// base selectors are those that you can find on all pages (exceptions may apply)
-	BASE: {
-		footerLinks: '.footer li a',
-		searchInput: '[id="search"]',
-		searchIconBtn: 'button.action.search',
-	},
 
-	// common selectors are those most commonly reused across the entire website
-	COMMON: {
-		nextBtn : '[data-role="opc-continue"]',
-		loadingSpinner: '[title="Loading..."]',
-	},
 
-	// selectors may be grouped per feature
-	NAVBAR: {
-		whatsNew : '[id="ui-id-3"]',
-		women: '[id="ui-id-4"]',
-		men: '[id="ui-id-5"]',
-		gear: '[id="ui-id-6"]',
-		training: '[id="ui-id-7"]',
-		sale: '[id="ui-id-8"]',
-		navbarLinks: '.navigation .level-top > a',
-	},
-
-	// selectors may be grouped per page
-	HOME_PAGE: {
-		blocksPromoLinks : '.blocks-promo a',
-	},
-
-	// selectors may be grouped per component 
-	PRODUCT : {
-		productItem : '.product-item',
-		productItemPhoto: '.product-item-photo',
-		productItemInfo: '.product-item-info',
-		productItemName: '.product-item-name',
-		sizeS: '#option-label-size-143-item-167',
-		colorOrange: '#option-label-color-93-item-56',
-		colorBlue: '#option-label-color-93-item-50',
-		addToCartBtn: '#product-addtocart-button',
-		addToCartSuccessMsg: '[data-ui-id="message-success"]',
-		priceContainer : '.price-container',
-		sorter: '[id="sorter"]',
-	},
 	PRODUCT_FILTERS: {
 		filterItem: '.filter-options-item > div',
 		filterItemActive: '.filter-options-item.active',
