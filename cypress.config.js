@@ -15,6 +15,7 @@ module.exports = defineConfig({
   pageLoadTimeout:60000,
   screenshotOnRunFailure: true,
   chromeWebSecurity: false,
+  experimentalWebKitSupport: true,
 
   env: {
     allure: true,
