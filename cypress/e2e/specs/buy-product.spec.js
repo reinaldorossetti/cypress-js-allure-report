@@ -4,7 +4,7 @@ import { SHIPPING_PAGE } from './selectors/shippingPage.js'
 import DataShipping from '../../fixtures/dataProducts.js'
 
 
-let orderDetails = {'orderNumber': ''};
+let orderDetails = {'orderNumber': '', 'email': ''};
 
 describe('Purchase functionalities', () => {
 	context('Orders', () => {
@@ -64,11 +64,12 @@ describe('Purchase functionalities', () => {
 
 			// assert registration data.
 			cy.contains('Thank you for your purchase!').should('be.visible')
-			cy.get('.checkout-success > p > span').invoke('text').then((text) => {
+			cy.get(SHIPPING_PAGE.PAYMENT.OrderNumber).invoke('text').then((text) => {
                 cy.contains(`Your order # is: ${text}`).should('be.visible')
 				orderDetails.orderNumber = text;
+				orderDetails.email = testData.email;
 				const orderDetailsJSON = JSON.stringify(orderDetails);
-				// Código para salvar o JSON em um arquivo
+				// create JSON with order details.
 				cy.writeFile('./cypress/fixtures/orderDetails.json', orderDetailsJSON);
             });
 

@@ -16,9 +16,7 @@
 // Import commands.js using ES2015 syntax:
 import './commands'
 import '@shelex/cypress-allure-plugin';
-import { faker } from '@faker-js/faker'
-// Set the locale to US
-faker.locale = 'en_US';
+
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

@@ -13,6 +13,7 @@ export const SHIPPING_PAGE = {
 
 	PAYMENT: {
 		shippingDetails: '.ship-to .shipping-information-content',
+		OrderNumber: '.checkout-success > p > span',
 		placeOrderBtn: '[title="Place Order"]',
 	},
 	SUCCESS_PURCHASE : {
