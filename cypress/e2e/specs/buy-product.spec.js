@@ -1,6 +1,6 @@
 import { HOME_PAGE } from './selectors/homePage.js'
 import { CART_PAGE } from './selectors/minicartPages.js'
-import { SHIPPING_PAGE } from './selectors/shippingPage.js'
+import { SHIPPING_FEATURE } from './selectors/shippingPage.js'
 import DataShipping from '../../fixtures/dataProducts.js'
 
 
@@ -48,7 +48,7 @@ describe('Purchase functionalities', () => {
 			cy.fill_shipping(testData.email, testData.firstName, testData.lastName, testData.postCode, testData.streetAddress, testData.city, testData.state, testData.country, testData.phone, shipping_value)
 			
 			// assert all the values entered at shipping are correctly saved at payment page
-			cy.get(SHIPPING_PAGE.PAYMENT.shippingDetails).should('be.visible').then(function(addressDetails){
+			cy.get(SHIPPING_FEATURE.PAYMENT.shippingDetails).should('be.visible').then(function(addressDetails){
 				expect(addressDetails[0].innerText).include(testData.firstName)
 				expect(addressDetails[0].innerText).include(testData.lastName)
 				expect(addressDetails[0].innerText).include(testData.streetAddress)
@@ -59,12 +59,12 @@ describe('Purchase functionalities', () => {
 				expect(addressDetails[0].innerText).include(testData.phone)
 			})
 
-			cy.get(SHIPPING_PAGE.PAYMENT.placeOrderBtn).should('be.visible').click()
+			cy.get(SHIPPING_FEATURE.PAYMENT.placeOrderBtn).should('be.visible').click()
 			cy.url().should('include', 'checkout/onepage/success/')
 
 			// assert registration data.
 			cy.contains('Thank you for your purchase!').should('be.visible')
-			cy.get(SHIPPING_PAGE.PAYMENT.OrderNumber).invoke('text').then((text) => {
+			cy.get(SHIPPING_FEATURE.PAYMENT.OrderNumber).invoke('text').then((text) => {
                 cy.contains(`Your order # is: ${text}`).should('be.visible')
 				orderDetails.orderNumber = text;
 				orderDetails.email = testData.email;
