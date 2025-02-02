@@ -14,6 +14,7 @@ module.exports = defineConfig({
   defaultCommandTimeout: 30000,
   pageLoadTimeout:60000,
   screenshotOnRunFailure: true,
+  chromeWebSecurity: false,
 
   env: {
     allure: true,
@@ -23,7 +24,6 @@ module.exports = defineConfig({
   
   e2e: {
     baseUrl: "https://magento.softwaretestingboard.com/",
-    chromeWebSecurity: false,
     includeShadowDom: true,
     retries: 1,
     setupNodeEvents(on, config) {
