@@ -15,13 +15,13 @@ jobs:
       - name: Step 3 - Roda o report
         continue-on-error: true
         run: |
-          npm run report
+          npx mochawesome-merge ./mochawesome-report/*.json > mochawesomeReport_Chrome.json && npx marge ./mochawesomeReport_Chrome.json
           ls -la mochawesome-report/
       - name: 🎁 Step 4 - mochawesome-report.html
         uses: actions/upload-artifact@v4
         continue-on-error: true
         with:
-          name: boards-tests
+          name: report-tests-chrome
           path: mochawesome-report/
   cypress-run-firefox:
     runs-on: ubuntu-22.04
@@ -35,13 +35,13 @@ jobs:
       - name: Step 3 - Roda o report
         continue-on-error: true
         run: |
-          npm run report
+          npx mochawesome-merge ./mochawesome-report/*.json > mochawesomeReport_Firefox.json && npx marge ./mochawesomeReport_Firefox.json
           ls -la mochawesome-report/
       - name: 🎁 Step 4 - mochawesome-report.html
         uses: actions/upload-artifact@v4
         continue-on-error: true
         with:
-          name: boards-tests
+          name: report-tests-firefox
           path: mochawesome-report/
   cypress-run-edge:
     runs-on: ubuntu-22.04
@@ -55,13 +55,13 @@ jobs:
       - name: Step 3 - Roda o report
         continue-on-error: true
         run: |
-          npm run report
+          npx mochawesome-merge ./mochawesome-report/*.json > mochawesomeReport_Edge.json && npx marge ./mochawesomeReport_Edge.json
           ls -la mochawesome-report/
       - name: 🎁 Step 4 - mochawesome-report.html
         uses: actions/upload-artifact@v4
         continue-on-error: true
         with:
-          name: boards-tests
+          name: report-tests-edge
           path: mochawesome-report/
   cypress-run-safari:
     runs-on: ubuntu-22.04
@@ -77,13 +77,13 @@ jobs:
       - name: Step 3 - Roda o report
         continue-on-error: true
         run: |
-          npm run report
+          npx mochawesome-merge ./mochawesome-report/*.json > mochawesomeReport_Webkit.json && npx marge ./mochawesomeReport_Webkit.json
           ls -la mochawesome-report/
       - name: 🎁 Step 4 - mochawesome-report.html
         uses: actions/upload-artifact@v4
         continue-on-error: true
         with:
-          name: boards-tests
+          name: report-tests-webkit
           path: mochawesome-report/
   cypress-run-electron:
     runs-on: ubuntu-22.04
@@ -97,11 +97,11 @@ jobs:
       - name: Step 3 - Roda o report
         continue-on-error: true
         run: |
-          npm run report
+          npx mochawesome-merge ./mochawesome-report/*.json > mochawesomeReport_Electron.json && npx marge ./mochawesomeReport_Electron.json
           ls -la mochawesome-report/
       - name: 🎁 Step 4 - mochawesome-report.html
         uses: actions/upload-artifact@v4
         continue-on-error: true
         with:
-          name: boards-tests
+          name: report-tests-electron
           path: mochawesome-report/

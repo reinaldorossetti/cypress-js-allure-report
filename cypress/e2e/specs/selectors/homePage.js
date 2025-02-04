@@ -4,7 +4,7 @@ export const HOME_PAGE = {
 
 	BASE: {
 		footerLinks: '.footer li a',
-		searchInput: '[id="search"]',
+		searchInput: '#search',
 		searchIconBtn: 'button.action.search',
 	},
 
@@ -20,7 +20,7 @@ export const HOME_PAGE = {
 
 	// selectors may be grouped per component 
 	BLOCK_PRODUCTS: {
-		productItem: '.product-item',
+		productItem: '.product-item-link',
 		productItemPhoto: '.product-item-photo',
 		productItemInfo: '.product-item-info',
 		productItemName: '.product-item-name',
