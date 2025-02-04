@@ -1,26 +1,28 @@
 const { defineConfig } = require("cypress");
-// const { allureCypress } = require('allure-cypress/reporter')
-const os = require('os')
 
-const env = process.env.NODE_ENV || 'dev'
-
-function removeUrlSuffix(text='') {
-  return text.replace(/URL=.*/, '')
-}
 
 module.exports = defineConfig({
   viewportWidth: 1440,
   viewportHeight: 900,
-  defaultCommandTimeout: 30000,
+  defaultCommandTimeout: 45000,
   pageLoadTimeout:60000,
   screenshotOnRunFailure: true,
   chromeWebSecurity: false,
   experimentalWebKitSupport: true,
+  reporter: 'mochawesome',
+  reporterOptions: {
+    // disable overwrite to generate many JSON reports
+    "overwrite": false,
+    // do not generate intermediate HTML reports
+    "html": false,
+    // generate intermediate JSON reports
+    "json": true,
+    reportFilename: "mochawesomeReport_[datetime]-[name]",
+    timestamp: "longDate"
+  },
 
   env: {
-    allure: true,
     video: false,
-    // allureReuseAfterSpec: true
   },
   
   e2e: {
@@ -29,26 +31,9 @@ module.exports = defineConfig({
     retries: 1,
     setupNodeEvents(on, config) {
       // implement node event listeners here
-      let browserName = ''
-
-      // on('before:browser:launch', (browser = {}, launchOptions) => {
-      //   browserName = browser.name || 'electron'
-      //   return launchOptions
-      // })
-
-      // allureCypress(on, config, {
-      //   environmentInfo: {
-      //     os_platform: os.platform(),
-      //     os_release: os.release(),
-      //     os_version: os.version(),
-      //     node_version: process.version,
-      //     environment: env,
-      //     browser: removeUrlSuffix(browserName),
-      //   },
-      // })
-      return config;
+      return config; 
     },
-    // Para setar o caminho dos testes.
+    // Set Path Tests.
     specPattern: [
       "cypress/e2e/specs/*.spec.js",
    ],

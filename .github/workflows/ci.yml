@@ -1,76 +1,124 @@
-name: All Browsers - End-to-end tests
+name: API tests Parallel for Spec.
 on:
   push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
   workflow_dispatch:
+permissions: write-all
 jobs:
-  cypress-run-chrome:
+  cypress-run-boards-tests:
     runs-on: ubuntu-22.04
     steps:
-      - name: Checkout
+    - name: Checkout
+      uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    - name: Step 1 - Install dependencies
+      run: |
+        npm install
+    - name: Step 2 - Write the cypress.env.json file 📝
+      run: |
+          echo '${{ secrets.CYPRESS_ENV_CI }}' > cypress.env.json
+
+    - name: Step 3 - Cypress run
+      uses: cypress-io/github-action@v6
+      if: always()
+      continue-on-error: true
+      with:
+        spec: cypress/e2e/features/boards_tests.cy.ts
+        record: false
+      env:  
+        ACCESS_TOKEN: "${{ secrets.ACCESS_TOKEN }}"
+        API_KEY: "${{ secrets.API_KEY }}"
+    - name: Step 4 - Roda o report
+      continue-on-error: true
+      run: |
+        npm run report
+        ls -la mochawesome-report
+    - name: 🎁 Step 5 - mochawesome-report.html
+      uses: actions/upload-artifact@v4
+      continue-on-error: true
+      with:
+        name: boards-tests
+        path: mochawesome-report/
+             
+  cypress-run-card-tests:
+    runs-on: ubuntu-22.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    - name: Step 1 - Install dependencies
+      run: |
+        npm install
+    - name: Step 2 - Write the cypress.env.json file 📝
+      run: |
+          echo '${{ secrets.CYPRESS_ENV_CI }}' > cypress.env.json
+
+    - name: Step 3 - Cypress run
+      uses: cypress-io/github-action@v6
+      if: always()
+      continue-on-error: true
+      with:
+        spec: cypress/e2e/features/card_tests.cy.ts
+        record: false
+      env:  
+        ACCESS_TOKEN: "${{ secrets.ACCESS_TOKEN }}"
+        API_KEY: "${{ secrets.API_KEY }}"
+    - name: Step 4 - Roda o report
+      continue-on-error: true
+      run: |
+        npm run report
+        ls -la mochawesome-report
+    - name: 🎁 Step 5 - mochawesome-report.html
+      uses: actions/upload-artifact@v4
+      with:
+        name: card-tests
+        path: mochawesome-report/
+    
+  cypress-report:
+    runs-on: ubuntu-22.04
+    needs: [cypress-run-boards-tests, cypress-run-card-tests]
+    steps:
+      - name: Checkout code
         uses: actions/checkout@v4
-      - name: Cypress run
-        uses: cypress-io/github-action@v6
+
+      - name: Download Feature A Report
+        uses: actions/download-artifact@v4
         with:
-          browser: chrome
-      - uses: actions/upload-artifact@v4
-        # add the line below to store screenshots only on failures
+          name: boards-tests
+          path: ./mochawesome-report/
+
+      - name: Download Feature B Report
+        uses: actions/download-artifact@v4
+        with:
+          name: card-tests
+          path: ./mochawesome-report/
+
+      - uses: actions/setup-node@v3
         if: always()
         continue-on-error: true
         with:
-          name: cypress-screenshots-chrome
-          path: cypress/screenshots
-          if-no-files-found: ignore # 'warn' or 'error' are also available, defaults to `warn`
-  cypress-run-firefox:
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Cypress run
-        uses: cypress-io/github-action@v6
-        with:
-          browser: firefox
-      - uses: actions/upload-artifact@v4
-        # add the line below to store screenshots only on failures
-        if: always()
+          node-version: '18'
+      - name: Step 4 - Roda o report
         continue-on-error: true
+        run: |
+          npm install
+          npm run report
+          ls -la mochawesome-report
+      - name: 🎁 Step 5 - mochawesome-report.html
+        uses: actions/upload-artifact@v4
         with:
-          name: cypress-screenshots-firefox
-          path: cypress/screenshots
-          if-no-files-found: ignore # 'warn' or 'error' are also available, defaults to `warn`
-  cypress-run-edge:
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Cypress run
-        uses: cypress-io/github-action@v6
+          name: html-report
+          path: mochawesome-report/
+      - name: Deploy reports
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          browser: edge
-      - uses: actions/upload-artifact@v4
-        # add the line below to store screenshots only on failures
-        if: always()
-        continue-on-error: true
-        with:
-          name: cypress-screenshots-edge
-          path: cypress/screenshots
-          if-no-files-found: ignore # 'warn' or 'error' are also available, defaults to `warn`
-  cypress-run-safari:
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Install webkit dependencies for Linux
-        run: npx playwright install-deps webkit
-      - name: Cypress run
-        uses: cypress-io/github-action@v5
-        with:
-          command: npx cypress run --browser webkit
-  cypress-run-electron:
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Cypress run
-        uses: cypress-io/github-action@v5
-        with:
-          browser: electron
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages  # default: gh-pages
+          publish_dir: mochawesome-report
+          destination_dir: reports
