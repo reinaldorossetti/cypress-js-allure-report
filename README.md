@@ -1,130 +1,96 @@
-# Cypress com TypeScript, Allure, Git Actions
+Test Automation with Cypress & Allure
 
-** Exemplo de estrutura de automação de testes de WEB, feita com Cypress em TypeScript, e Allure fornece o relatório dos testes. **
+📌 Overview
 
-- [Instalação e execução](#instalação-e-execução)
-  - [Pré-requisitos](#pré-requisitos)
-  - [Clonando o repositório](#clonando-o-repositório)
-- [Testes](#testes-de-api)
-  - [Pré-requisito](#pré-requisito)
-  - [Executando os testes](#executando-os-testes)
-  - [Resultado](#resultado)
-- [Sobre o projeto](#sobre-o-projeto)
-  - [Dependências utilizadas](#dependências-utilizadas)
-  - [Estrutura de diretórios](#estrutura-de-diretórios)
-  - [Ambiente](#ambiente)
-- [Lint](#lint)
+This project is an automated test suite using Cypress for end-to-end testing, integrated with Allure for test reporting.
 
----
+🛠️ Setup & Installation
 
-## Instalação e execução
+1. Prerequisites
 
-### Pré-requisitos
+Node.js (LTS version recommended)
 
-- [Git](https://git-scm.com/download/) e [Node.js](https://nodejs.org/en/download/) instalados.
+npm or yarn
 
-### Clonando o repositório
+2. Clone the Repository
 
-Todos os comandos abaixo são feitos no terminal
+git clone <repo-url>
+cd <project-folder>
 
-**Passo 1** - Faça um clone do repositório e acesse o diretório criado pelo clone.
+3. Install Dependencies
 
-```sh
-git https://github.com/reinaldorossetti/cypress-typescript-allure-report.git
-cd cypress-typescript-allure-report
-```
-
-**Passo 2** - Instale as dependências do projeto:
-
-```sh
 npm install
-```
-### Testes de API
 
-**Passo 3** - Executando o projeto e gerando o Relatório:
+🚀 Running the Tests
 
-#### Executando os testes
+Run Cypress in Different Browsers
 
-### Pre-requisito:
-Criar o arquivo:
-```
-cypress.env.json
-```
-Com o conteúdo:
-````
-{
-  "BASE_URL": "https://loja.vr.com.br/",
-  "PASSWORD": "",
-  "USER": ""
-}
-````
+Google Chrome:
 
-Caso queira apenas rodar os testes, sem precisar subir ambiente, execute o seguinte comando:
-
-> Os testes serão executados em cima da página [VR](https://loja.vr.com.br/)
-
-#### Testes com chrome
-```sh
 npm run tests-chrome
-```
-#### Testes com edge
-```sh
-npm run tests-chrome
-```
-#### Testes com firefox
-```sh
+
+Microsoft Edge:
+
+npm run tests-edge
+
+Mozilla Firefox:
+
 npm run tests-firefox
-```
-Para exibir o Report (Foi utilizado o Allure Report):
-```sh
+
+WebKit (via Playwright):
+
+npm run tests-webkit
+
+Open Cypress Test Runner
+
+npm run open
+
+📊 Test Reports
+
+This project uses Allure Reports for test reporting.
+
+Generate and View Report
+
 npm run report
-```
 
-As variáveis por ambiente estão definidos dentro dos arquivos cypress.config.ts
+This command will:
 
-#### Resultado
+Generate a clean Allure report from test results.
 
-Com allure report:
-```sh
-https://reinaldorossetti.github.io/cypress-typescript-allure-report/allure-report/#suites/
-```
-Actions:
-https://github.com/reinaldorossetti/cypress-typescript-allure-report/actions
+Open the Allure report in the browser.
 
-**Passo 4** - Como funciona a Estrutura do Projeto:
+📂 Project Structure
 
-As dependências estão definidas no [package.json](./package.json).
+├── cypress/
+│   ├── e2e/               # Test cases
+│   ├── fixtures/          # Test data
+│   ├── support/           # Custom commands & configuration
+├── allure-results/        # Allure report raw data
+├── allure-report/         # Generated Allure reports
+├── cypress.config.js      # Cypress configuration
+├── package.json           # Project dependencies & scripts
+├── README.md              # Project documentation
 
-### Estrutura de diretórios
+🛠️ Dependencies
 
-```
-cypress-typescript-allure-report/  
- ├─ .github                                 - Arquivos de Esteira do GitActions
- ├─ cypress/                                - Pasta do Cypress com as Automações.
- |   ├─ e2e/ features /                     - Pasta dos testes end to end, separado por features.
- |       ├─ nome_da_feature
- |          ├─ virtual_shopping_cart.cy.ts  - Feature do shopping cart, contendo todo o passo a passo.
- |          └─ elements /                   - Elementos e Textos relacionado a tela que esta sendo testada.
- |   └─ support/  
- |       ├─ commands.ts                     - Comandos personalizados que estão utilizando o Cypress.Commands.
- |       ├─ e2e.ts                          - Os imports e Setup para os testes e2e.  
- |       └─ index.d.js                      - Os comandos que estão no commands.ts, precisam ser declados na interface Chainable<Subject>.
- ├─ cypress.config.ts                       - Arquivo principal de configuração do Cypress.
- ├─ cypress.env.json                        - Dados que seram utilizados nos testes, utilizado o Cypress.env
- ├─ package.json                            - Arquivo de Setup do Nodejs/NPM, vai conter os comandos de execução e as Bibliotecas.
- ├─ README.md                               - Documentação básica do projeto.
- └─ tsconfig.json                           - Arquivo de Configuração do TypeScript.
-```
+Cypress: v13.17.0
 
-## Allure report  
-Podemos adicionar variaveis e severidade dos testes para ser exibidos no report.
-Tipos de severidade que podemos usar os tipos: blocker, critical, minor, trivial.O tipo normal é padrão, não precisando ser adicionada.
-Nos testes precisamos adicionar os comandos abaixos:
-````js
-    allureMocha.allure.parameter('body', String(response.text))
-    allureMocha.allure.severity('minor')
-````
+Allure Cypress Plugin: v2.40.2
 
-### Referências:  
-[Cypress](https://www.cypress.io)
-[Allure](https://github.com/Shelex/cypress-allure-plugin)  
+Allure Command Line: v2.32.0
+
+Playwright WebKit: v1.50.1
+
+@faker-js/faker: v9.4.0
+
+jQuery: v3.7.1
+
+📌 Notes
+
+Ensure all dependencies are installed before running tests.
+
+Allure reports should be regenerated before viewing to get updated results.
+
+The test execution may vary depending on the selected browser.
+
+Happy Testing! 🚀
