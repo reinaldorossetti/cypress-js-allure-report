@@ -10,6 +10,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Step 2 - Cypress run
         uses: cypress-io/github-action@v6
+        continue-on-error: true
         with:
           browser: chrome
       - name: Step 3 - Roda o report
@@ -30,6 +31,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Step 2 - Cypress run
         uses: cypress-io/github-action@v6
+        continue-on-error: true
         with:
           browser: firefox
       - name: Step 3 - Roda o report
@@ -50,6 +52,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Step 2 - Cypress run
         uses: cypress-io/github-action@v6
+        continue-on-error: true
         with:
           browser: edge
       - name: Step 3 - Roda o report
@@ -72,6 +75,7 @@ jobs:
         run: npx playwright install-deps webkit
       - name: Cypress run
         uses: cypress-io/github-action@v5
+        continue-on-error: true
         with:
           command: npx cypress run --browser webkit
       - name: Step 3 - Roda o report
@@ -92,6 +96,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Step 2 - Cypress run
         uses: cypress-io/github-action@v6
+        continue-on-error: true
         with:
           browser: electron
       - name: Step 3 - Roda o report

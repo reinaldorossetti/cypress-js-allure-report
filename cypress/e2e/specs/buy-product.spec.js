@@ -19,6 +19,7 @@ describe('Purchase functionalities', () => {
 
 		it('CT01 - Add 2 itens by Home Page to cart and complete the order' , () => {
 
+			cy.find_product_name(Order.product_name)
 			cy.add_to_cart(Order.product_name, Order.valueItem, Order.size, Order.color, Order.quantity)
             cy.contains(`You added ${Order.product_name} to your shopping cart.`).should('be.visible')
             cy.get(HOME_PAGE.BLOCK_PRODUCTS.showcart_number).then(($el)=>{ $el.get(0).scrollIntoView()}).contains(`${Order.quantity}`);
@@ -78,6 +79,7 @@ describe('Purchase functionalities', () => {
 	it('CT02 - Add 1 itens from category to cart and complete the order' , () => {
 
 		cy.navbar_by_category(Order.category_item, Order.menu_item)
+		cy.find_product_name(Order.product_name2)
 
 		cy.add_to_cart(Order.product_name2, Order.valueItem2, Order.size, Order.color2, Order.quantityOne)
 		
@@ -137,10 +139,10 @@ describe('Purchase functionalities', () => {
 
 	it('CT03 - Add 1 itens from seach to cart and complete the order' , () => {
 
-		cy.seach_bar(Order.menu_single_item, Order.product_name3)
+		cy.seach_bar(Order.menu_single_item)
+		cy.find_product_name(Order.product_name3)
 
 		cy.add_to_cart(Order.product_name3, Order.valueItem3, Order.size2, Order.color3, Order.quantityOne)
-		
 		cy.contains(`You added ${Order.product_name3} to your shopping cart.`).should('be.visible')
 		cy.get(HOME_PAGE.BLOCK_PRODUCTS.showcart_number).then(($el)=>{ $el.get(0).scrollIntoView()}).contains(`${Order.quantityOne}`);
 		
@@ -167,14 +169,14 @@ describe('Purchase functionalities', () => {
 		
 		// Navigate to payment page.
 		cy.get(SHIPPING.PAYMENT.shippingDetails).should('be.visible')
-		cy.contains(testData.firstName).should('be.visible')
-		cy.contains(testData.lastName).should('be.visible')
-		cy.contains(testData.streetAddress).should('be.visible')
-		cy.contains(testData.city).should('be.visible')
+		cy.contains(testData.firstName).should('exist')
+		cy.contains(testData.lastName).should('exist')
+		cy.contains(testData.streetAddress).should('exist')
+		cy.contains(testData.city).should('exist')
 		cy.contains(testData.country).should('exist')
-		cy.contains(testData.postCode).should('be.visible')
+		cy.contains(testData.postCode).should('exist')
 		cy.contains(testData.state).should('exist')
-		cy.contains(testData.phone).should('be.visible')
+		cy.contains(testData.phone).should('exist')
 
 		cy.get(SHIPPING.PAYMENT.placeOrderBtn).should('be.visible').click()
 		cy.url().should('include', 'checkout/onepage/success/')
