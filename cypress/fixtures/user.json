@@ -1,4 +1,8 @@
 {
   "email": "Cordie83@yahoo.com",
-  "password": "hZQ_G8RGtoUlWQJ"
+  "password": "hZQ_G8RGtoUlWQJ",
+  "incorrectEmail": "test@test.com",
+  "incorrectPassword": "hZQ_123456",
+  "emptyEmail": "",
+  "emptyPassword": ""
 }
