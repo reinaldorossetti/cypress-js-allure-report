@@ -24,35 +24,29 @@ describe('User Authentication Tests', () => {
 })
 
 describe('Negative Login Tests', () => {
+	const testData = DataShipping()
 	it('Should fail with incorrect email and correct password', () => {
-		cy.fixture('user').then((user) => {
 			cy.visit('/')
-			cy.login(user.incorrectEmail, user.password)
-			cy.get(':nth-child(2) > .greet > .logged-in').should('be.visible')
-		})
+			cy.login(testData.incorrectEmail, testData.password)
+			cy.get('.message-error').should('be.visible')
 	});
 
 	it('Should fail with correct email and incorrect password', () => {
-		cy.fixture('user').then((user) => {
 			cy.visit('/')
-			cy.login(user.email, user.incorrectPassword)
-			cy.get(':nth-child(2) > .greet > .logged-in').should('be.visible')
-		})
+			cy.login(testData.email, testData.incorrectPassword)
+			cy.get('.message-error').should('be.visible')
 	});
 
 	it('Should fail with both incorrect email and password', () => {
-		cy.fixture('user').then((user) => {
 			cy.visit('/')
-			cy.login(user.incorrectEmail, user.incorrectPassword)
-			cy.get(':nth-child(2) > .greet > .logged-in').should('be.visible')
-		})
+			cy.login(testData.incorrectEmail, testData.incorrectPassword)
+			cy.get('.message-error').should('be.visible')
 	});
 
 	it('Should fail with empty email and password', () => {
-		cy.fixture('user').then((user) => {
 			cy.visit('/')
-			cy.login(user.emptyEmail, user.emptyPassword)
-			cy.get(':nth-child(2) > .greet > .logged-in').should('be.visible')
-		})
+			cy.login(testData.emptyEmail, testData.emptyPassword)
+			cy.get('#email-error').should('be.visible')
+			cy.get('#pass-error').should('be.visible')
 	});
 });

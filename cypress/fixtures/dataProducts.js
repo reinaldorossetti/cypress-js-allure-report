@@ -14,6 +14,10 @@ const DataShipping = () => {
 		postCode : faker.location.zipCode(),
 		state : faker.location.state(),
 		phone : faker.phone.number(),
+		incorrectEmail: 'test@test.com',
+		incorrectPassword: '12345678',
+		emptyEmail: ' ',
+		emptyPassword: ' '
 	};
 	return data;
 }

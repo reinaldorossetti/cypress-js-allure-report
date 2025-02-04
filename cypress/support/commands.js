@@ -122,3 +122,4 @@ Cypress.Commands.add('seach_bar', (product_item, product_name) => {
   cy.get(HOME_PAGE.BLOCK_PRODUCTS.productItem).contains(product_name).click()
   cy.get(HOME_PAGE.BLOCK_PRODUCTS.productItem).contains(product_name).should('not.exist')
 })
+
