@@ -21,7 +21,7 @@ jobs:
         uses: actions/upload-artifact@v4
         continue-on-error: true
         with:
-          name: boards-tests
+          name: report-tests-chrome
           path: mochawesome-report/
   cypress-run-firefox:
     runs-on: ubuntu-22.04
@@ -41,7 +41,7 @@ jobs:
         uses: actions/upload-artifact@v4
         continue-on-error: true
         with:
-          name: boards-tests
+          name: report-tests-firefox
           path: mochawesome-report/
   cypress-run-edge:
     runs-on: ubuntu-22.04
@@ -61,7 +61,7 @@ jobs:
         uses: actions/upload-artifact@v4
         continue-on-error: true
         with:
-          name: boards-tests
+          name: report-tests-edge
           path: mochawesome-report/
   cypress-run-safari:
     runs-on: ubuntu-22.04
@@ -83,7 +83,7 @@ jobs:
         uses: actions/upload-artifact@v4
         continue-on-error: true
         with:
-          name: boards-tests
+          name: report-tests-webkit
           path: mochawesome-report/
   cypress-run-electron:
     runs-on: ubuntu-22.04
@@ -103,5 +103,5 @@ jobs:
         uses: actions/upload-artifact@v4
         continue-on-error: true
         with:
-          name: boards-tests
+          name: report-tests-electron
           path: mochawesome-report/
