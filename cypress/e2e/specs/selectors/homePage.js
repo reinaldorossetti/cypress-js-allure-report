@@ -15,12 +15,14 @@ export const HOME_PAGE = {
 
 	NAVBAR: {
 		whatsNew: '[id="ui-id-3"]',
-		women: '[id="ui-id-4"]',
+		women: '#ui-id-4',
 		men: '[id="ui-id-5"]',
 		gear: '[id="ui-id-6"]',
 		training: '[id="ui-id-7"]',
 		sale: '[id="ui-id-8"]',
 		navbarLinks: '.navigation .level-top > a',
+		tops: '#ui-id-9',
+		tees: '#ui-id-13',
 	},
 
 	// selectors may be grouped per component 

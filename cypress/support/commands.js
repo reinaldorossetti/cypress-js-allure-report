@@ -1,6 +1,6 @@
 
 import { HOME_PAGE } from '../e2e/specs/selectors/homePage'
-import { SHIPPING_FEATURE } from '../e2e/specs/selectors/shippingPage'
+import { SHIPPING } from '../e2e/specs/selectors/shippingPage'
 
 
 /**
@@ -41,34 +41,34 @@ Cypress.Commands.add('fill_shipping', (email, firstName, lastName, postCode, str
   // fill in the SHIPPING PAGE
   cy.contains('Shipping Address').should('be.visible')
   cy.contains('Email Address').should('exist')
-  cy.get(SHIPPING_FEATURE.email).type(email)
+  cy.get(SHIPPING.email).type(email)
   cy.contains('You can create an account after checkout.').should('exist')
 
   cy.contains('First Name').should('exist')
-  cy.get(SHIPPING_FEATURE.firstName).type(firstName)
+  cy.get(SHIPPING.firstName).type(firstName)
 
   cy.contains('Last Name').should('exist')
-  cy.get(SHIPPING_FEATURE.lastName).type(lastName)
+  cy.get(SHIPPING.lastName).type(lastName)
 
   cy.contains('Street Address').should('exist')
-  cy.get(SHIPPING_FEATURE.streetAddress).type(streetAddress)
+  cy.get(SHIPPING.streetAddress).type(streetAddress)
 
   cy.contains('City').should('exist')
-  cy.get(SHIPPING_FEATURE.city).type(city)
+  cy.get(SHIPPING.city).type(city)
 
   cy.contains('Country').should('exist')
-  cy.get(SHIPPING_FEATURE.country).select(country)
+  cy.get(SHIPPING.country).select(country)
 
   cy.get(HOME_PAGE.COMMON.loadingSpinner).should('not.exist')
   cy.contains('Zip/Postal Code').should('exist')
-  cy.get(SHIPPING_FEATURE.postCode).type(postCode)
+  cy.get(SHIPPING.postCode).type(postCode)
 
   cy.get(HOME_PAGE.COMMON.loadingSpinner).should('not.exist')
   cy.contains('State/Province').should('exist')
-  cy.get(SHIPPING_FEATURE.stateSelect).select(state)
+  cy.get(SHIPPING.stateSelect).select(state)
 
   cy.contains('Phone Number').should('exist')
-  cy.get(SHIPPING_FEATURE.phone).type(phone_number)
+  cy.get(SHIPPING.phone).type(phone_number)
 
   cy.contains(shipping_value).should('be.visible').click() 
   cy.get(HOME_PAGE.COMMON.nextBtn).click()

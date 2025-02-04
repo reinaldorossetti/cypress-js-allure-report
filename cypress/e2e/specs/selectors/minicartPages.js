@@ -1,5 +1,5 @@
 
-export const CART_PAGE = {
+export const MINICART = {
 
 	PRODUCT_FILTERS: {
 		filterItem: '.filter-options-item > div',
@@ -7,11 +7,11 @@ export const CART_PAGE = {
 		item : '.item',
 	},
 
-	MINICART : {
-		miniCart: '[data-block="minicart"]', 
-		miniCartCounter: '[data-block="minicart"] .counter .counter-number',
-		miniCartSubTotal: '.subtotal .price-container',
-		miniCartDropDownProceedToCheckout: '#top-cart-btn-checkout',
-	}
+	miniCart: '[data-block="minicart"]', 
+	miniCartCounter: '[data-block="minicart"] .counter .counter-number',
+	miniCartSubTotal: '.subtotal .price-container',
+	miniCartDropDownProceedToCheckout: '#top-cart-btn-checkout',
+	miniCartProductItemName: '#ui-id-1 .product-item-name a',
+	miniCartProductItemPrice: '#ui-id-1 .minicart-price',
 
 }
