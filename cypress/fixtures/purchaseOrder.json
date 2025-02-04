@@ -1,10 +1,17 @@
 {
     "product_name": "Radiant Tee",
+    "product_name2": "Diva Gym Tee",
     "quantityOne": "1",
     "quantity": "2",
     "valueItem": "$22.00",
+    "valueItem2": "$32.00",
     "valueItensTotal": "$44.00",
+    "valueItensTotal2": "$32.00",
     "size": "XS",
     "color": "Blue",
-    "shipping_value": "$10.00" 
+    "color2": "Yellow",
+    "shipping_value": "$10.00",
+    "shipping_value2": "$15.00",
+    "category_item": "Women",
+    "menu_item": "Tees"
 }

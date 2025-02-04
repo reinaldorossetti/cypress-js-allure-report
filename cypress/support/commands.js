@@ -9,8 +9,8 @@ import { ACCOUNT } from '../e2e/specs/selectors/account'
  * 
  */
 Cypress.Commands.add('add_to_cart', (product_name, value, size, color, quantity = 1) => {
-  cy.get(`.product-item-name a[title=\"${product_name}\"]`).click()
-  cy.get(`.product-item-name a[title=\"${product_name}\"]`).should('not.exist')
+  cy.get('.product-item-link').contains(product_name).click()
+  cy.get('.product-item-link').contains(product_name).should('not.exist')
 
   cy.contains(product_name).should('be.visible')
   cy.contains(`${value}`).should('be.visible')

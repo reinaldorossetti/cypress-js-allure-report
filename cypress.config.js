@@ -1,5 +1,5 @@
 const { defineConfig } = require("cypress");
-const { allureCypress } = require('allure-cypress/reporter')
+// const { allureCypress } = require('allure-cypress/reporter')
 const os = require('os')
 
 const env = process.env.NODE_ENV || 'dev'
@@ -20,7 +20,11 @@ module.exports = defineConfig({
   env: {
     allure: true,
     video: false,
+<<<<<<< HEAD
     //allureReuseAfterSpec: true
+=======
+    // allureReuseAfterSpec: true
+>>>>>>> fe5b6c2ec1b647b4e5cee17c05a9c98bcbfcc493
   },
   
   e2e: {
@@ -31,21 +35,21 @@ module.exports = defineConfig({
       // implement node event listeners here
       let browserName = ''
 
-      on('before:browser:launch', (browser = {}, launchOptions) => {
-        browserName = browser.name || 'electron'
-        return launchOptions
-      })
+      // on('before:browser:launch', (browser = {}, launchOptions) => {
+      //   browserName = browser.name || 'electron'
+      //   return launchOptions
+      // })
 
-      allureCypress(on, config, {
-        environmentInfo: {
-          os_platform: os.platform(),
-          os_release: os.release(),
-          os_version: os.version(),
-          node_version: process.version,
-          environment: env,
-          browser: removeUrlSuffix(browserName),
-        },
-      })
+      // allureCypress(on, config, {
+      //   environmentInfo: {
+      //     os_platform: os.platform(),
+      //     os_release: os.release(),
+      //     os_version: os.version(),
+      //     node_version: process.version,
+      //     environment: env,
+      //     browser: removeUrlSuffix(browserName),
+      //   },
+      // })
       return config;
     },
     // Para setar o caminho dos testes.
