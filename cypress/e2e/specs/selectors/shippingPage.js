@@ -1,5 +1,5 @@
 
-export const SHIPPING_FEATURE = {
+export const SHIPPING = {
 
     email: '#shipping #customer-email',
     firstName: 'input[name="firstname"]',

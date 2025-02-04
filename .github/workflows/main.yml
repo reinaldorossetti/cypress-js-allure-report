@@ -31,21 +31,31 @@ jobs:
         browser: chrome
         headed: true
 
-    - name: mostra as pastas
-      run: ls -la
-    - name:  Step 3 - Collect Allure files and generate allure-report folder
-      run: |
-        allure generate ./allure-results -o allure-report/
-    - name: 🎁 Step 4 - Publishing Allure artifact to GitHub Actions
-      uses: actions/upload-artifact@v4
+    - name: Generate Allure report
+      run: npm run allure:generate
+
+    - name: Load test report history
+      uses: actions/checkout@v3
+      if: always()
+      continue-on-error: true
       with:
-        name: allure-report
-        path: allure-report
-        
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v4
+        ref: gh-pages
+        path: gh-pages
+
+    - name: Build test report
+      uses: simple-elf/allure-report-action@v1.7
+      if: always()
+      with:
+        gh_pages: gh-pages
+        allure_history: allure-history
+        allure_results: allure-results
+
+    - name: Publish test report
+      uses: peaceiris/actions-gh-pages@v3
+      if: always()
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_branch: gh-pages  # default: gh-pages
-        publish_dir: allure-report
-        destination_dir: allure-report
+        publish_branch: gh-pages
+        publish_dir: allure-history
+        allow_empty_commit: true
+        force_orphan: true
