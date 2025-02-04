@@ -61,7 +61,7 @@ This project uses **Mocha Reports** for test reporting.
 
 ### **Generate and View Report**
 ```bash
-npm run report
+npx cypress run
 ```
 
 🔹 This command will:
