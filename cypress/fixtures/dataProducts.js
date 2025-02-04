@@ -7,6 +7,7 @@ const DataShipping = () => {
 		email : faker.internet.email(),
 		firstName : faker.person.firstName(),
 		lastName : faker.person.lastName(),
+		password : faker.internet.password(),
 		streetAddress : faker.location.streetAddress(),
 		city : faker.location.city(),
 		country : 'United States',

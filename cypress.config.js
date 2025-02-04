@@ -23,6 +23,7 @@ module.exports = defineConfig({
 
   env: {
     video: false,
+    videoUploadOnPasses: false,
   },
   
   e2e: {

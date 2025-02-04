@@ -1,6 +1,7 @@
 
 import { HOME_PAGE } from '../e2e/specs/selectors/homePage'
 import { SHIPPING } from '../e2e/specs/selectors/shippingPage'
+import { ACCOUNT } from '../e2e/specs/selectors/account'
 
 
 /**
@@ -74,4 +75,39 @@ Cypress.Commands.add('fill_shipping', (email, firstName, lastName, postCode, str
   cy.get(HOME_PAGE.COMMON.nextBtn).click()
   cy.url().should('include', '#payment')
 
+})
+
+Cypress.Commands.add('create_new_account', (email, firstName, lastName, password) => {
+  cy.contains('Create an Account').should('exist')
+  cy.get(ACCOUNT.NEW_ACCOUNT.createAccount).click()
+  
+  cy.contains('First Name').should('exist')
+  cy.get(ACCOUNT.NEW_ACCOUNT.firstName).type(firstName)
+
+  cy.contains('Last Name').should('exist')
+  cy.get(ACCOUNT.NEW_ACCOUNT.lastName).type(lastName)
+
+  cy.contains('Email').should('exist')
+  cy.get(ACCOUNT.NEW_ACCOUNT.email).type(email)
+
+  cy.contains('Password').should('exist')
+  cy.get(ACCOUNT.NEW_ACCOUNT.password).type(password)
+
+  cy.contains('Confirm Password').should('exist')
+  cy.get(ACCOUNT.NEW_ACCOUNT.passwordConfirmation).type(password)
+
+  cy.get(ACCOUNT.NEW_ACCOUNT.createAccountButton).click()
+})
+
+Cypress.Commands.add('login', (email, password) => {
+  cy.contains('Sign In').should('exist')
+  cy.get(ACCOUNT.LOGIN.signIn).click()
+
+  cy.contains('Email').should('exist')
+  cy.get(ACCOUNT.LOGIN.email).type(email)
+
+  cy.contains('Password').should('exist')
+  cy.get(ACCOUNT.LOGIN.password).type(password)
+
+  cy.get(ACCOUNT.LOGIN.signInButton).click()
 })
