@@ -1,0 +1,454 @@
+{
+  "stats": {
+    "suites": 4,
+    "tests": 10,
+    "passes": 5,
+    "pending": 0,
+    "failures": 5,
+    "testsRegistered": 10,
+    "passPercent": 50,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false,
+    "start": "2025-02-04T19:54:12.062Z",
+    "end": "2025-02-04T20:11:50.641Z",
+    "duration": 1058579
+  },
+  "results": [
+    {
+      "uuid": "e916c68f-5eb9-442d-ae5f-edd886bd5dfe",
+      "title": "",
+      "fullFile": "cypress\\e2e\\specs\\buy-product.spec.js",
+      "file": "cypress\\e2e\\specs\\buy-product.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "4c434cc7-371b-4360-a65e-ed49b5080903",
+          "title": "Purchase functionalities",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "39140947-ed96-45b4-9567-c5d794b3a4cc",
+              "title": "Orders",
+              "fullFile": "",
+              "file": "",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "CT01 - Add 2 itens by Home Page to cart and complete the order",
+                  "fullTitle": "Purchase functionalities Orders CT01 - Add 2 itens by Home Page to cart and complete the order",
+                  "timedOut": null,
+                  "duration": 24953,
+                  "state": "passed",
+                  "speed": "slow",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "cy.find_product_name(_purchaseOrder.default.product_name);\ncy.add_to_cart(_purchaseOrder.default.product_name, _purchaseOrder.default.valueItem, _purchaseOrder.default.size, _purchaseOrder.default.color, _purchaseOrder.default.quantity);\ncy.contains(`You added ${_purchaseOrder.default.product_name} to your shopping cart.`).should('be.visible');\ncy.get(_homePage.HOME_PAGE.BLOCK_PRODUCTS.showcart_number).then($el => {\n  $el.get(0).scrollIntoView();\n}).contains(`${_purchaseOrder.default.quantity}`);\n// assert number of items in cart\ncy.get(_homePage.HOME_PAGE.BLOCK_PRODUCTS.quantity).invoke('val').then(value => {\n  expect(value).to.eq(`${_purchaseOrder.default.quantity}`);\n});\ncy.get(_minicartPages.MINICART.miniCart).click();\ncy.get(_minicartPages.MINICART.miniCartSubTotal).should('be.visible');\ncy.contains(`${_purchaseOrder.default.quantity} Item in Cart`).should('be.visible');\ncy.contains(`Proceed to Checkout`).should('be.visible');\ncy.contains(`View and Edit Cart`).should('be.visible');\ncy.contains(`${_purchaseOrder.default.valueItensTotal}`).should('be.visible');\ncy.get(_minicartPages.MINICART.miniCartProductItemName).should('be.visible').contains(_purchaseOrder.default.product_name);\ncy.get(_minicartPages.MINICART.miniCartProductItemPrice).should('be.visible').contains(_purchaseOrder.default.valueItem);\ncy.get(_minicartPages.MINICART.miniCartDropDownProceedToCheckout).click();\ncy.url().should('include', 'checkout/#shipping');\n// fill in the SHIPPING PAGE\ncy.fill_shipping(testData.email, testData.firstName, testData.lastName, testData.postCode, testData.streetAddress, testData.city, testData.state, testData.country, testData.phone, _purchaseOrder.default.shipping_value);\n// assert shipping details.\ncy.get(_shippingPage.SHIPPING.PAYMENT.shippingDetails).should('be.visible');\ncy.contains(testData.firstName).should('be.visible');\ncy.contains(testData.lastName).should('be.visible');\ncy.contains(testData.streetAddress).should('be.visible');\ncy.contains(testData.city).should('be.visible');\ncy.contains(testData.country).should('exist');\ncy.contains(testData.postCode).should('be.visible');\ncy.contains(testData.state).should('exist');\ncy.contains(testData.phone).should('be.visible');\n// Navigate to payment page.\ncy.get(_shippingPage.SHIPPING.PAYMENT.placeOrderBtn).should('be.visible').click();\ncy.url().should('include', 'checkout/onepage/success/');\n// assert ordem data.\ncy.contains('Thank you for your purchase!').should('be.visible');\ncy.get(_shippingPage.SHIPPING.PAYMENT.OrderNumber).invoke('text').then(text => {\n  cy.contains(`Your order # is: ${text}`).should('be.visible');\n  orderDetails.orderNumber = text;\n  orderDetails.email = testData.email;\n  const orderDetailsJSON = JSON.stringify(orderDetails);\n  // create JSON with order details.\n  cy.writeFile('./cypress/fixtures/orderDetails.json', orderDetailsJSON);\n});\ncy.contains(`Email Address: ${testData.email}`).should('be.visible');\ncy.contains('Continue Shopping').should('be.visible');\ncy.contains('Create an Account').should('be.visible');",
+                  "err": {},
+                  "uuid": "5482aca4-435e-48a1-992c-3d44668fcd67",
+                  "parentUUID": "39140947-ed96-45b4-9567-c5d794b3a4cc",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "CT02 - Add 1 itens from category to cart and complete the order",
+                  "fullTitle": "Purchase functionalities Orders CT02 - Add 1 itens from category to cart and complete the order",
+                  "timedOut": null,
+                  "duration": 24898,
+                  "state": "passed",
+                  "speed": "slow",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "cy.navbar_by_category(_purchaseOrder.default.category_item, _purchaseOrder.default.menu_item);\ncy.find_product_name(_purchaseOrder.default.product_name2);\ncy.add_to_cart(_purchaseOrder.default.product_name2, _purchaseOrder.default.valueItem2, _purchaseOrder.default.size, _purchaseOrder.default.color2, _purchaseOrder.default.quantityOne);\ncy.contains(`You added ${_purchaseOrder.default.product_name2} to your shopping cart.`).should('be.visible');\ncy.get(_homePage.HOME_PAGE.BLOCK_PRODUCTS.showcart_number).then($el => {\n  $el.get(0).scrollIntoView();\n}).contains(`${_purchaseOrder.default.quantityOne}`);\n// assert number of items in cart\ncy.get(_homePage.HOME_PAGE.BLOCK_PRODUCTS.quantity).invoke('val').then(value => {\n  expect(value).to.eq(`${_purchaseOrder.default.quantityOne}`);\n});\ncy.get(_minicartPages.MINICART.miniCart).click();\ncy.get(_minicartPages.MINICART.miniCartSubTotal).should('be.visible');\ncy.contains(`${_purchaseOrder.default.quantityOne} Item in Cart`).should('be.visible');\ncy.contains(`Proceed to Checkout`).should('be.visible');\ncy.contains(`View and Edit Cart`).should('be.visible');\ncy.contains(`${_purchaseOrder.default.valueItensTotal2}`).should('be.visible');\ncy.get(_minicartPages.MINICART.miniCartProductItemName).should('be.visible').contains(_purchaseOrder.default.product_name2);\ncy.get(_minicartPages.MINICART.miniCartProductItemPrice).should('be.visible').contains(_purchaseOrder.default.valueItem2);\ncy.get(_minicartPages.MINICART.miniCartDropDownProceedToCheckout).click();\ncy.url().should('include', 'checkout/#shipping');\n// fill in the SHIPPING PAGE\ncy.fill_shipping(testData.email, testData.firstName, testData.lastName, testData.postCode, testData.streetAddress, testData.city, testData.state, testData.country, testData.phone, _purchaseOrder.default.shipping_value2);\n// Navigate to payment page.\ncy.get(_shippingPage.SHIPPING.PAYMENT.shippingDetails).should('be.visible');\ncy.contains(testData.firstName).should('be.visible');\ncy.contains(testData.lastName).should('be.visible');\ncy.contains(testData.streetAddress).should('be.visible');\ncy.contains(testData.city).should('be.visible');\ncy.contains(testData.country).should('exist');\ncy.contains(testData.postCode).should('be.visible');\ncy.contains(testData.state).should('exist');\ncy.contains(testData.phone).should('be.visible');\ncy.get(_shippingPage.SHIPPING.PAYMENT.placeOrderBtn).should('be.visible').click();\ncy.url().should('include', 'checkout/onepage/success/');\n// assert registration data.\ncy.contains('Thank you for your purchase!').should('be.visible');\ncy.get(_shippingPage.SHIPPING.PAYMENT.OrderNumber).invoke('text').then(text => {\n  cy.contains(`Your order # is: ${text}`).should('be.visible');\n  orderDetails.orderNumber = text;\n  orderDetails.email = testData.email;\n  const orderDetailsJSON = JSON.stringify(orderDetails);\n  // create JSON with order details.\n  cy.writeFile('./cypress/fixtures/orderDetails.json', orderDetailsJSON);\n});\ncy.contains(`Email Address: ${testData.email}`).should('be.visible');\ncy.contains('Continue Shopping').should('be.visible');\ncy.contains('Create an Account').should('be.visible');",
+                  "err": {},
+                  "uuid": "18f27495-05b7-4508-9fd0-7dd12abfb3d9",
+                  "parentUUID": "39140947-ed96-45b4-9567-c5d794b3a4cc",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "CT03 - Add 1 itens from seach to cart and complete the order",
+                  "fullTitle": "Purchase functionalities Orders CT03 - Add 1 itens from seach to cart and complete the order",
+                  "timedOut": null,
+                  "duration": 63994,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": "{\n  \"title\": \"cypress-mochawesome-reporter-screenshots\",\n  \"value\": [\n    [\n      \"\\\\buy-product.spec.js\\\\Purchase functionalities -- Orders -- CT03 - Add 1 itens from seach to cart and complete the order (failed).png\"\n    ],\n    [\n      \"\\\\buy-product.spec.js\\\\Purchase functionalities -- Orders -- CT03 - Add 1 itens from seach to cart and complete the order (failed) (attempt 2).png\"\n    ]\n  ]\n}",
+                  "code": "cy.seach_bar(_purchaseOrder.default.menu_single_item);\ncy.find_product_name(_purchaseOrder.default.product_name3);\ncy.add_to_cart(_purchaseOrder.default.product_name3, _purchaseOrder.default.valueItem3, _purchaseOrder.default.size2, _purchaseOrder.default.color3, _purchaseOrder.default.quantityOne);\ncy.contains(`You added ${_purchaseOrder.default.product_name3} to your shopping cart.`).should('be.visible');\ncy.get(_homePage.HOME_PAGE.BLOCK_PRODUCTS.showcart_number).then($el => {\n  $el.get(0).scrollIntoView();\n}).contains(`${_purchaseOrder.default.quantityOne}`);\n// assert number of items in cart\ncy.get(_homePage.HOME_PAGE.BLOCK_PRODUCTS.quantity).invoke('val').then(value => {\n  expect(value).to.eq(`${_purchaseOrder.default.quantityOne}`);\n});\ncy.get(_minicartPages.MINICART.miniCart).click();\ncy.get(_minicartPages.MINICART.miniCartSubTotal).should('be.visible');\ncy.contains(`${_purchaseOrder.default.quantityOne} Item in Cart`).should('be.visible');\ncy.contains(`Proceed to Checkout`).should('be.visible');\ncy.contains(`View and Edit Cart`).should('be.visible');\ncy.contains(`${_purchaseOrder.default.valueItensTotal3}`).should('be.visible');\ncy.get(_minicartPages.MINICART.miniCartProductItemName).should('be.visible').contains(_purchaseOrder.default.product_name3);\ncy.get(_minicartPages.MINICART.miniCartProductItemPrice).should('be.visible').contains(_purchaseOrder.default.valueItem3);\ncy.get(_minicartPages.MINICART.miniCartDropDownProceedToCheckout).click();\ncy.url().should('include', 'checkout/#shipping');\n// fill in the SHIPPING PAGE\ncy.fill_shipping(testData.email, testData.firstName, testData.lastName, testData.postCode, testData.streetAddress, testData.city, testData.state, testData.country, testData.phone, _purchaseOrder.default.shipping_value2);\n// Navigate to payment page.\ncy.get(_shippingPage.SHIPPING.PAYMENT.shippingDetails).should('be.visible');\ncy.contains(testData.firstName).should('be.visible');\ncy.contains(testData.lastName).should('be.visible');\ncy.contains(testData.streetAddress).should('be.visible');\ncy.contains(testData.city).should('be.visible');\ncy.contains(testData.country).should('exist');\ncy.contains(testData.postCode).should('be.visible');\ncy.contains(testData.state).should('exist');\ncy.contains(testData.phone).should('be.visible');\ncy.get(_shippingPage.SHIPPING.PAYMENT.placeOrderBtn).should('be.visible').click();\ncy.url().should('include', 'checkout/onepage/success/');\n// assert registration data.\ncy.contains('Thank you for your purchase!').should('be.visible');\ncy.get(_shippingPage.SHIPPING.PAYMENT.OrderNumber).invoke('text').then(text => {\n  cy.contains(`Your order # is: ${text}`).should('be.visible');\n  orderDetails.orderNumber = text;\n  orderDetails.email = testData.email;\n  const orderDetailsJSON = JSON.stringify(orderDetails);\n  // create JSON with order details.\n  cy.writeFile('./cypress/fixtures/orderDetails.json', orderDetailsJSON);\n});\ncy.contains(`Email Address: ${testData.email}`).should('be.visible');\ncy.contains('Continue Shopping').should('be.visible');\ncy.contains('Create an Account').should('be.visible');",
+                  "err": {
+                    "message": "AssertionError: Timed out retrying after 45000ms: expected '<a#ui-id-13.ui-corner-all>' to be 'visible'\n\nThis element `<a#ui-id-13.ui-corner-all>` is not visible because its parent `<ul.level1.submenu.ui-menu.ui-widget.ui-widget-content.ui-corner-all.expanded>` has CSS property: `display: none`",
+                    "estack": "AssertionError: Timed out retrying after 45000ms: expected '<a#ui-id-13.ui-corner-all>' to be 'visible'\n\nThis element `<a#ui-id-13.ui-corner-all>` is not visible because its parent `<ul.level1.submenu.ui-menu.ui-widget.ui-widget-content.ui-corner-all.expanded>` has CSS property: `display: none`\n    at Context.eval (webpack:///./cypress/support/commands.js:125:28)",
+                    "diff": null
+                  },
+                  "uuid": "7bda6d2e-9b63-4822-8910-03c2c1a8012e",
+                  "parentUUID": "39140947-ed96-45b4-9567-c5d794b3a4cc",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "5482aca4-435e-48a1-992c-3d44668fcd67",
+                "18f27495-05b7-4508-9fd0-7dd12abfb3d9"
+              ],
+              "failures": [
+                "7bda6d2e-9b63-4822-8910-03c2c1a8012e"
+              ],
+              "pending": [],
+              "skipped": [],
+              "duration": 113845,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "daabece8-4a2e-4c3b-bd44-1f0b905efa25",
+      "title": "",
+      "fullFile": "cypress\\e2e\\specs\\buy-product.spec.js",
+      "file": "cypress\\e2e\\specs\\buy-product.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "82e1edae-2bfe-4edc-a7ef-3e01fd7c23b7",
+          "title": "Purchase functionalities",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "72d43f59-fef6-4507-9921-853b009c7e36",
+              "title": "Orders",
+              "fullFile": "",
+              "file": "",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "CT01 - Add 2 itens by Home Page to cart and complete the order",
+                  "fullTitle": "Purchase functionalities Orders CT01 - Add 2 itens by Home Page to cart and complete the order",
+                  "timedOut": null,
+                  "duration": 48837,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": "{\n  \"title\": \"cypress-mochawesome-reporter-screenshots\",\n  \"value\": [\n    [\n      \"\\\\buy-product.spec.js\\\\Purchase functionalities -- Orders -- CT01 - Add 2 itens by Home Page to cart and complete the order (failed).png\"\n    ],\n    [\n      \"\\\\buy-product.spec.js\\\\Purchase functionalities -- Orders -- CT01 - Add 2 itens by Home Page to cart and complete the order (failed) (attempt 2).png\"\n    ]\n  ]\n}",
+                  "code": "cy.add_to_cart(_purchaseOrder.default.product_name, _purchaseOrder.default.valueItem, _purchaseOrder.default.size, _purchaseOrder.default.color, _purchaseOrder.default.quantity);\ncy.contains(`You added ${_purchaseOrder.default.product_name} to your shopping cart.`).should('be.visible');\ncy.get(_homePage.HOME_PAGE.BLOCK_PRODUCTS.showcart_number).then($el => {\n  $el.get(0).scrollIntoView();\n}).contains(`${_purchaseOrder.default.quantity}`);\n// assert number of items in cart\ncy.get(_homePage.HOME_PAGE.BLOCK_PRODUCTS.quantity).invoke('val').then(value => {\n  expect(value).to.eq(`${_purchaseOrder.default.quantity}`);\n});\ncy.get(_minicartPages.MINICART.miniCart).click();\ncy.get(_minicartPages.MINICART.miniCartSubTotal).should('be.visible');\ncy.contains(`${_purchaseOrder.default.quantity} Item in Cart`).should('be.visible');\ncy.contains(`Proceed to Checkout`).should('be.visible');\ncy.contains(`View and Edit Cart`).should('be.visible');\ncy.contains(`${_purchaseOrder.default.valueItensTotal}`).should('be.visible');\ncy.get(_minicartPages.MINICART.miniCartProductItemName).should('be.visible').contains(_purchaseOrder.default.product_name);\ncy.get(_minicartPages.MINICART.miniCartProductItemPrice).should('be.visible').contains(_purchaseOrder.default.valueItem);\ncy.get(_minicartPages.MINICART.miniCartDropDownProceedToCheckout).click();\ncy.url().should('include', 'checkout/#shipping');\n// fill in the SHIPPING PAGE\ncy.fill_shipping(testData.email, testData.firstName, testData.lastName, testData.postCode, testData.streetAddress, testData.city, testData.state, testData.country, testData.phone, _purchaseOrder.default.shipping_value);\n// assert shipping details.\ncy.get(_shippingPage.SHIPPING.PAYMENT.shippingDetails).should('be.visible');\ncy.contains(testData.firstName).should('be.visible');\ncy.contains(testData.lastName).should('be.visible');\ncy.contains(testData.streetAddress).should('be.visible');\ncy.contains(testData.city).should('be.visible');\ncy.contains(testData.country).should('exist');\ncy.contains(testData.postCode).should('be.visible');\ncy.contains(testData.state).should('exist');\ncy.contains(testData.phone).should('be.visible');\n// Navigate to payment page.\ncy.get(_shippingPage.SHIPPING.PAYMENT.placeOrderBtn).should('be.visible').click();\ncy.url().should('include', 'checkout/onepage/success/');\n// assert ordem data.\ncy.contains('Thank you for your purchase!').should('be.visible');\ncy.get(_shippingPage.SHIPPING.PAYMENT.OrderNumber).invoke('text').then(text => {\n  cy.contains(`Your order # is: ${text}`).should('be.visible');\n  orderDetails.orderNumber = text;\n  orderDetails.email = testData.email;\n  const orderDetailsJSON = JSON.stringify(orderDetails);\n  // create JSON with order details.\n  cy.writeFile('./cypress/fixtures/orderDetails.json', orderDetailsJSON);\n});\ncy.contains(`Email Address: ${testData.email}`).should('be.visible');\ncy.contains('Continue Shopping').should('be.visible');\ncy.contains('Create an Account').should('be.visible');",
+                  "err": {
+                    "message": "AssertionError: Timed out retrying after 45000ms: Expected to find content: 'In stock' but never did.",
+                    "estack": "AssertionError: Timed out retrying after 45000ms: Expected to find content: 'In stock' but never did.\n    at Context.eval (webpack:///./cypress/support/commands.js:15:26)",
+                    "diff": null
+                  },
+                  "uuid": "b93842a4-83a5-46eb-b426-5ded87e86cfe",
+                  "parentUUID": "72d43f59-fef6-4507-9921-853b009c7e36",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "CT02 - Add 1 itens from category to cart and complete the order",
+                  "fullTitle": "Purchase functionalities Orders CT02 - Add 1 itens from category to cart and complete the order",
+                  "timedOut": null,
+                  "duration": 5126,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": "{\n  \"title\": \"cypress-mochawesome-reporter-screenshots\",\n  \"value\": [\n    [\n      \"\\\\buy-product.spec.js\\\\Purchase functionalities -- Orders -- CT02 - Add 1 itens from category to cart and complete the order (failed).png\"\n    ],\n    [\n      \"\\\\buy-product.spec.js\\\\Purchase functionalities -- Orders -- CT02 - Add 1 itens from category to cart and complete the order (failed) (attempt 2).png\"\n    ]\n  ]\n}",
+                  "code": "cy.navbar_by_category(_purchaseOrder.default.category_item, _purchaseOrder.default.menu_item);\ncy.add_to_cart(_purchaseOrder.default.product_name2, _purchaseOrder.default.valueItem2, _purchaseOrder.default.size, _purchaseOrder.default.color2, _purchaseOrder.default.quantityOne);\ncy.contains(`You added ${_purchaseOrder.default.product_name2} to your shopping cart.`).should('be.visible');\ncy.get(_homePage.HOME_PAGE.BLOCK_PRODUCTS.showcart_number).then($el => {\n  $el.get(0).scrollIntoView();\n}).contains(`${_purchaseOrder.default.quantityOne}`);\n// assert number of items in cart\ncy.get(_homePage.HOME_PAGE.BLOCK_PRODUCTS.quantity).invoke('val').then(value => {\n  expect(value).to.eq(`${_purchaseOrder.default.quantityOne}`);\n});\ncy.get(_minicartPages.MINICART.miniCart).click();\ncy.get(_minicartPages.MINICART.miniCartSubTotal).should('be.visible');\ncy.contains(`${_purchaseOrder.default.quantityOne} Item in Cart`).should('be.visible');\ncy.contains(`Proceed to Checkout`).should('be.visible');\ncy.contains(`View and Edit Cart`).should('be.visible');\ncy.contains(`${_purchaseOrder.default.valueItensTotal2}`).should('be.visible');\ncy.get(_minicartPages.MINICART.miniCartProductItemName).should('be.visible').contains(_purchaseOrder.default.product_name2);\ncy.get(_minicartPages.MINICART.miniCartProductItemPrice).should('be.visible').contains(_purchaseOrder.default.valueItem2);\ncy.get(_minicartPages.MINICART.miniCartDropDownProceedToCheckout).click();\ncy.url().should('include', 'checkout/#shipping');\n// fill in the SHIPPING PAGE\ncy.fill_shipping(testData.email, testData.firstName, testData.lastName, testData.postCode, testData.streetAddress, testData.city, testData.state, testData.country, testData.phone, _purchaseOrder.default.shipping_value2);\n// Navigate to payment page.\ncy.get(_shippingPage.SHIPPING.PAYMENT.shippingDetails).should('be.visible');\ncy.contains(testData.firstName).should('be.visible');\ncy.contains(testData.lastName).should('be.visible');\ncy.contains(testData.streetAddress).should('be.visible');\ncy.contains(testData.city).should('be.visible');\ncy.contains(testData.country).should('exist');\ncy.contains(testData.postCode).should('be.visible');\ncy.contains(testData.state).should('exist');\ncy.contains(testData.phone).should('be.visible');\ncy.get(_shippingPage.SHIPPING.PAYMENT.placeOrderBtn).should('be.visible').click();\ncy.url().should('include', 'checkout/onepage/success/');\n// assert registration data.\ncy.contains('Thank you for your purchase!').should('be.visible');\ncy.get(_shippingPage.SHIPPING.PAYMENT.OrderNumber).invoke('text').then(text => {\n  cy.contains(`Your order # is: ${text}`).should('be.visible');\n  orderDetails.orderNumber = text;\n  orderDetails.email = testData.email;\n  const orderDetailsJSON = JSON.stringify(orderDetails);\n  // create JSON with order details.\n  cy.writeFile('./cypress/fixtures/orderDetails.json', orderDetailsJSON);\n});\ncy.contains(`Email Address: ${testData.email}`).should('be.visible');\ncy.contains('Continue Shopping').should('be.visible');\ncy.contains('Create an Account').should('be.visible');",
+                  "err": {
+                    "message": "CypressError: `cy.contains()` can only accept a string, number or regular expression.\n\nhttps://on.cypress.io/contains",
+                    "estack": "CypressError: `cy.contains()` can only accept a string, number or regular expression.\n\nhttps://on.cypress.io/contains\n    at $Command.contains (https://magento.softwaretestingboard.com/__cypress/runner/cypress_runner.js:132037:68)\n    at cyFn (https://magento.softwaretestingboard.com/__cypress/runner/cypress_runner.js:138201:19)\nFrom Your Spec Code:\n    at Context.eval (webpack:///./cypress/support/commands.js:116:47)",
+                    "diff": null
+                  },
+                  "uuid": "450ae0bf-04f9-4cec-8bbe-7462ba08f2ed",
+                  "parentUUID": "72d43f59-fef6-4507-9921-853b009c7e36",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "CT03 - Add 1 itens from seach to cart and complete the order",
+                  "fullTitle": "Purchase functionalities Orders CT03 - Add 1 itens from seach to cart and complete the order",
+                  "timedOut": null,
+                  "duration": 29020,
+                  "state": "passed",
+                  "speed": "slow",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "cy.seach_bar(_purchaseOrder.default.menu_single_item, _purchaseOrder.default.product_name3);\ncy.add_to_cart(_purchaseOrder.default.product_name3, _purchaseOrder.default.valueItem3, _purchaseOrder.default.size2, _purchaseOrder.default.color3, _purchaseOrder.default.quantityOne);\ncy.contains(`You added ${_purchaseOrder.default.product_name3} to your shopping cart.`).should('be.visible');\ncy.get(_homePage.HOME_PAGE.BLOCK_PRODUCTS.showcart_number).then($el => {\n  $el.get(0).scrollIntoView();\n}).contains(`${_purchaseOrder.default.quantityOne}`);\n// assert number of items in cart\ncy.get(_homePage.HOME_PAGE.BLOCK_PRODUCTS.quantity).invoke('val').then(value => {\n  expect(value).to.eq(`${_purchaseOrder.default.quantityOne}`);\n});\ncy.get(_minicartPages.MINICART.miniCart).click();\ncy.get(_minicartPages.MINICART.miniCartSubTotal).should('be.visible');\ncy.contains(`${_purchaseOrder.default.quantityOne} Item in Cart`).should('be.visible');\ncy.contains(`Proceed to Checkout`).should('be.visible');\ncy.contains(`View and Edit Cart`).should('be.visible');\ncy.contains(`${_purchaseOrder.default.valueItensTotal3}`).should('be.visible');\ncy.get(_minicartPages.MINICART.miniCartProductItemName).should('be.visible').contains(_purchaseOrder.default.product_name3);\ncy.get(_minicartPages.MINICART.miniCartProductItemPrice).should('be.visible').contains(_purchaseOrder.default.valueItem3);\ncy.get(_minicartPages.MINICART.miniCartDropDownProceedToCheckout).click();\ncy.url().should('include', 'checkout/#shipping');\n// fill in the SHIPPING PAGE\ncy.fill_shipping(testData.email, testData.firstName, testData.lastName, testData.postCode, testData.streetAddress, testData.city, testData.state, testData.country, testData.phone, _purchaseOrder.default.shipping_value2);\n// Navigate to payment page.\ncy.get(_shippingPage.SHIPPING.PAYMENT.shippingDetails).should('be.visible');\ncy.contains(testData.firstName).should('be.visible');\ncy.contains(testData.lastName).should('be.visible');\ncy.contains(testData.streetAddress).should('be.visible');\ncy.contains(testData.city).should('be.visible');\ncy.contains(testData.country).should('exist');\ncy.contains(testData.postCode).should('be.visible');\ncy.contains(testData.state).should('exist');\ncy.contains(testData.phone).should('be.visible');\ncy.get(_shippingPage.SHIPPING.PAYMENT.placeOrderBtn).should('be.visible').click();\ncy.url().should('include', 'checkout/onepage/success/');\n// assert registration data.\ncy.contains('Thank you for your purchase!').should('be.visible');\ncy.get(_shippingPage.SHIPPING.PAYMENT.OrderNumber).invoke('text').then(text => {\n  cy.contains(`Your order # is: ${text}`).should('be.visible');\n  orderDetails.orderNumber = text;\n  orderDetails.email = testData.email;\n  const orderDetailsJSON = JSON.stringify(orderDetails);\n  // create JSON with order details.\n  cy.writeFile('./cypress/fixtures/orderDetails.json', orderDetailsJSON);\n});\ncy.contains(`Email Address: ${testData.email}`).should('be.visible');\ncy.contains('Continue Shopping').should('be.visible');\ncy.contains('Create an Account').should('be.visible');",
+                  "err": {},
+                  "uuid": "486d852a-bd16-45f4-8f86-d4c65bb71061",
+                  "parentUUID": "72d43f59-fef6-4507-9921-853b009c7e36",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "486d852a-bd16-45f4-8f86-d4c65bb71061"
+              ],
+              "failures": [
+                "b93842a4-83a5-46eb-b426-5ded87e86cfe",
+                "450ae0bf-04f9-4cec-8bbe-7462ba08f2ed"
+              ],
+              "pending": [],
+              "skipped": [],
+              "duration": 82983,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "7d480efa-60d4-4cb4-9406-ec1a42d43ec8",
+      "title": "",
+      "fullFile": "cypress\\e2e\\specs\\create-account.spec.js",
+      "file": "cypress\\e2e\\specs\\create-account.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "4473177b-9a6b-4cfb-a249-785274702d60",
+          "title": "Account",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Create Account",
+              "fullTitle": "Account Create Account",
+              "timedOut": null,
+              "duration": 60515,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": "{\n  \"title\": \"cypress-mochawesome-reporter-screenshots\",\n  \"value\": [\n    [\n      \"\\\\create-account.spec.js\\\\Account -- Create Account (failed).png\"\n    ],\n    [\n      \"\\\\create-account.spec.js\\\\Account -- Create Account (failed) (attempt 2).png\"\n    ]\n  ]\n}",
+              "code": "const testData = (0, _dataProducts.default)();\ncy.writeFile('cypress/fixtures/user.json', {\n  email: testData.email,\n  password: testData.password\n});\ncy.visit('/');\ncy.create_new_account(testData.email, testData.firstName, testData.lastName, testData.password);\ncy.get('.message-success').should('be.visible');",
+              "err": {
+                "message": "CypressError: Timed out after waiting `60000ms` for your remote page to load.\n\nYour page did not fire its `load` event within `60000ms`.\n\nYou can try increasing the `pageLoadTimeout` value in `github-projects\\cypress-js-allure-report\\cypress.config.js` to wait longer.\n\nBrowsers will not fire the `load` event until all stylesheets and scripts are done downloading.\n\nWhen this `load` event occurs, Cypress will continue running commands.",
+                "estack": "CypressError: Timed out after waiting `60000ms` for your remote page to load.\n\nYour page did not fire its `load` event within `60000ms`.\n\nYou can try increasing the `pageLoadTimeout` value in `github-projects\\cypress-js-allure-report\\cypress.config.js` to wait longer.\n\nBrowsers will not fire the `load` event until all stylesheets and scripts are done downloading.\n\nWhen this `load` event occurs, Cypress will continue running commands.\n    at timedOutWaitingForPageLoad (https://magento.softwaretestingboard.com/__cypress/runner/cypress_runner.js:130639:64)\n    at <unknown> (https://magento.softwaretestingboard.com/__cypress/runner/cypress_runner.js:131624:16)\n    at tryCatcher (https://magento.softwaretestingboard.com/__cypress/runner/cypress_runner.js:1830:23)\n    at <unknown> (https://magento.softwaretestingboard.com/__cypress/runner/cypress_runner.js:4209:41)\n    at tryCatcher (https://magento.softwaretestingboard.com/__cypress/runner/cypress_runner.js:1830:23)\n    at Promise._settlePromiseFromHandler (https://magento.softwaretestingboard.com/__cypress/runner/cypress_runner.js:1542:31)\n    at Promise._settlePromise (https://magento.softwaretestingboard.com/__cypress/runner/cypress_runner.js:1599:18)\n    at Promise._settlePromise0 (https://magento.softwaretestingboard.com/__cypress/runner/cypress_runner.js:1644:10)\n    at Promise._settlePromises (https://magento.softwaretestingboard.com/__cypress/runner/cypress_runner.js:1720:18)\n    at _drainQueueStep (https://magento.softwaretestingboard.com/__cypress/runner/cypress_runner.js:2430:12)\n    at _drainQueue (https://magento.softwaretestingboard.com/__cypress/runner/cypress_runner.js:2423:9)\n    at Async._drainQueues (https://magento.softwaretestingboard.com/__cypress/runner/cypress_runner.js:2439:5)\n    at Async.drainQueues (https://magento.softwaretestingboard.com/__cypress/runner/cypress_runner.js:2309:14)\nFrom Your Spec Code:\n    at Context.eval (webpack:///./cypress/e2e/specs/create-account.spec.js:12:5)",
+                "diff": null
+              },
+              "uuid": "1d8ad148-1543-4474-9d3e-a5833d0c7dd0",
+              "parentUUID": "4473177b-9a6b-4cfb-a249-785274702d60",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Login",
+              "fullTitle": "Account Login",
+              "timedOut": null,
+              "duration": 421,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": "{\n  \"title\": \"cypress-mochawesome-reporter-screenshots\",\n  \"value\": [\n    [\n      \"\\\\create-account.spec.js\\\\Account -- Login (failed).png\"\n    ],\n    [\n      \"\\\\create-account.spec.js\\\\Account -- Login (failed) (attempt 2).png\"\n    ]\n  ]\n}",
+              "code": "cy.fixture('user').then(user => {\n  cy.visit('/');\n  cy.login(user.email, user.password);\n  cy.get(':nth-child(2) > .greet > .logged-in').should('be.visible');\n});",
+              "err": {
+                "message": "CypressError: `cy.visit()` failed trying to load:\n\nhttps://magento.softwaretestingboard.com/\n\nThe response we received from your web server was:\n\n  > 500: Internal Server Error\n\nThis was considered a failure because the status code was not `2xx`.\n\nIf you do not want status codes to cause failures pass the option: `failOnStatusCode: false`",
+                "estack": "CypressError: `cy.visit()` failed trying to load:\n\nhttps://magento.softwaretestingboard.com/\n\nThe response we received from your web server was:\n\n  > 500: Internal Server Error\n\nThis was considered a failure because the status code was not `2xx`.\n\nIf you do not want status codes to cause failures pass the option: `failOnStatusCode: false`\n    at <unknown> (https://magento.softwaretestingboard.com/__cypress/runner/cypress_runner.js:131591:76)\n    at visitFailedByErr (https://magento.softwaretestingboard.com/__cypress/runner/cypress_runner.js:131006:12)\n    at <unknown> (https://magento.softwaretestingboard.com/__cypress/runner/cypress_runner.js:131574:13)\n    at tryCatcher (https://magento.softwaretestingboard.com/__cypress/runner/cypress_runner.js:1830:23)\n    at Promise._settlePromiseFromHandler (https://magento.softwaretestingboard.com/__cypress/runner/cypress_runner.js:1542:31)\n    at Promise._settlePromise (https://magento.softwaretestingboard.com/__cypress/runner/cypress_runner.js:1599:18)\n    at Promise._settlePromise0 (https://magento.softwaretestingboard.com/__cypress/runner/cypress_runner.js:1644:10)\n    at Promise._settlePromises (https://magento.softwaretestingboard.com/__cypress/runner/cypress_runner.js:1720:18)\n    at _drainQueueStep (https://magento.softwaretestingboard.com/__cypress/runner/cypress_runner.js:2430:12)\n    at _drainQueue (https://magento.softwaretestingboard.com/__cypress/runner/cypress_runner.js:2423:9)\n    at Async._drainQueues (https://magento.softwaretestingboard.com/__cypress/runner/cypress_runner.js:2439:5)\n    at Async.drainQueues (https://magento.softwaretestingboard.com/__cypress/runner/cypress_runner.js:2309:14)\nFrom Your Spec Code:\n    at Context.eval (webpack:///./cypress/e2e/specs/create-account.spec.js:19:6)",
+                "diff": null
+              },
+              "uuid": "a522054e-bf94-4b48-83ad-d9217b2429f3",
+              "parentUUID": "4473177b-9a6b-4cfb-a249-785274702d60",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "1d8ad148-1543-4474-9d3e-a5833d0c7dd0",
+            "a522054e-bf94-4b48-83ad-d9217b2429f3"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 60936,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "ef6e31e9-b121-4ece-8864-1a44c88660d6",
+      "title": "",
+      "fullFile": "cypress\\e2e\\specs\\create-account.spec.js",
+      "file": "cypress\\e2e\\specs\\create-account.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "8509dfa1-616f-44c7-b951-069b0626b3c4",
+          "title": "Account",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Create Account",
+              "fullTitle": "Account Create Account",
+              "timedOut": null,
+              "duration": 11225,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const testData = (0, _dataProducts.default)();\ncy.writeFile('cypress/fixtures/user.json', {\n  email: testData.email,\n  password: testData.password\n});\ncy.visit('/');\ncy.create_new_account(testData.email, testData.firstName, testData.lastName, testData.password);\ncy.get('.message-success').should('be.visible');",
+              "err": {},
+              "uuid": "771ca9d8-a15b-4095-b4c6-867f32835049",
+              "parentUUID": "8509dfa1-616f-44c7-b951-069b0626b3c4",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Login",
+              "fullTitle": "Account Login",
+              "timedOut": null,
+              "duration": 7369,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.fixture('user').then(user => {\n  cy.visit('/');\n  cy.login(user.email, user.password);\n  cy.get(':nth-child(2) > .greet > .logged-in').should('be.visible');\n});",
+              "err": {},
+              "uuid": "ab81c749-336c-41e0-98ae-77deb1d76d7e",
+              "parentUUID": "8509dfa1-616f-44c7-b951-069b0626b3c4",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "771ca9d8-a15b-4095-b4c6-867f32835049",
+            "ab81c749-336c-41e0-98ae-77deb1d76d7e"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 18594,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesomeReport_[datetime]-[name]",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportFilename": "mochawesomeReport_[datetime]-[name]",
+        "timestamp": "longDate"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

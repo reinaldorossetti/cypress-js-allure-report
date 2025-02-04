@@ -110,16 +110,17 @@ Cypress.Commands.add('login', (email, password) => {
   cy.get(ACCOUNT.LOGIN.signInButton).click()
 })
 
-Cypress.Commands.add('navbar_by_category', (category_item, menu_item, product_name) => {
+Cypress.Commands.add('find_product_name', (product_name) => {
+  cy.get(HOME_PAGE.BLOCK_PRODUCTS.productItem).contains(product_name).click()
+  cy.get(HOME_PAGE.BLOCK_PRODUCTS.productItem).contains(product_name).should('not.exist')
+})
+
+Cypress.Commands.add('navbar_by_category', (category_item, menu_item) => {
   cy.get(HOME_PAGE.NAVBAR.productItem).contains(category_item).then(($el)=>{ $el.get(0).scrollIntoView()}).click()
   cy.get(HOME_PAGE.NAVBAR.categoriesMenu).then(($el)=>{ $el.get(0).scrollIntoView()}).contains(menu_item).click()
-  cy.get(HOME_PAGE.BLOCK_PRODUCTS.productItem).contains(product_name).click()
-  cy.get(HOME_PAGE.BLOCK_PRODUCTS.productItem).contains(product_name).should('not.exist')
 })
 
-Cypress.Commands.add('seach_bar', (product_item, product_name) => {
-  cy.get(HOME_PAGE.BASE.searchInput).then(($el)=>{ $el.get(0).scrollIntoView()}).type(product_item).type('{enter}')
-  cy.get(HOME_PAGE.BLOCK_PRODUCTS.productItem).contains(product_name).click()
-  cy.get(HOME_PAGE.BLOCK_PRODUCTS.productItem).contains(product_name).should('not.exist')
+Cypress.Commands.add('seach_bar', (product_name) => {
+  cy.get(HOME_PAGE.BASE.searchInput).then(($el)=>{ $el.get(0).scrollIntoView()}).type(product_name).type('{enter}')
+  cy.contains(product_name).should('exist')
 })
-
