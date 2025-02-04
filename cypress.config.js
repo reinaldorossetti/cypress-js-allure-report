@@ -20,7 +20,7 @@ module.exports = defineConfig({
   env: {
     allure: true,
     video: false,
-    allureReuseAfterSpec: true
+    //allureReuseAfterSpec: true
   },
   
   e2e: {
