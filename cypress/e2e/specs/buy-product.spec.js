@@ -75,13 +75,13 @@ describe('Purchase functionalities', () => {
 		cy.visit('/')
 		const testData = DataShipping()
 
-		cy.get(HOME_PAGE.NAVBAR.women).then(($el)=>{ $el.get(0).scrollIntoView()})
-		cy.get(HOME_PAGE.NAVBAR.tops).then(($el)=>{ $el.get(0).scrollIntoView()})
-		cy.get(HOME_PAGE.NAVBAR.tees).then(($el)=>{ $el.get(0).scrollIntoView()}).click()
+		cy.get(HOME_PAGE.NAVBAR.productItem).contains(Order.category_item).then(($el)=>{ $el.get(0).scrollIntoView()}).click()
+		cy.get(HOME_PAGE.NAVBAR.categoriesMenu).then(($el)=>{ $el.get(0).scrollIntoView()}).contains(Order.menu_item).click()
 
-		cy.add_to_cart(Order.product_name, Order.valueItem, Order.size, Order.color, Order.quantityOne)
-		cy.contains(`You added ${Order.product_name} to your shopping cart.`).should('be.visible')
-		cy.get(HOME_PAGE.BLOCK_PRODUCTS.showcart_number).then(($el)=>{ $el.get(0).scrollIntoView()}).contains(`${Order.quantity}`);
+		cy.add_to_cart(Order.product_name2, Order.valueItem2, Order.size, Order.color2, Order.quantityOne)
+		
+		cy.contains(`You added ${Order.product_name2} to your shopping cart.`).should('be.visible')
+		cy.get(HOME_PAGE.BLOCK_PRODUCTS.showcart_number).then(($el)=>{ $el.get(0).scrollIntoView()}).contains(`${Order.quantityOne}`);
 		
 		// assert number of items in cart
 		cy.get(HOME_PAGE.BLOCK_PRODUCTS.quantity).invoke('val').then((value) => {
@@ -91,17 +91,17 @@ describe('Purchase functionalities', () => {
 		cy.get(MINICART.miniCart).click()
 		cy.get(MINICART.miniCartSubTotal).should('be.visible')
 
-		cy.contains(`${Order.quantity} Item in Cart`).should('be.visible')
+		cy.contains(`${Order.quantityOne} Item in Cart`).should('be.visible')
 		cy.contains(`Proceed to Checkout`).should('be.visible')
 		cy.contains(`View and Edit Cart`).should('be.visible')
-		cy.contains(`${Order.valueItensTotal}`).should('be.visible')
-		cy.get(MINICART.miniCartProductItemName).should('be.visible').contains(Order.product_name)
-		cy.get(MINICART.miniCartProductItemPrice).should('be.visible').contains(Order.valueItem)
+		cy.contains(`${Order.valueItensTotal2}`).should('be.visible')
+		cy.get(MINICART.miniCartProductItemName).should('be.visible').contains(Order.product_name2)
+		cy.get(MINICART.miniCartProductItemPrice).should('be.visible').contains(Order.valueItem2)
 
 		cy.get(MINICART.miniCartDropDownProceedToCheckout).click()
 		cy.url().should('include', 'checkout/#shipping')
 
-		cy.fill_shipping(testData.email, testData.firstName, testData.lastName, testData.postCode, testData.streetAddress, testData.city, testData.state, testData.country, testData.phone, Order.shipping_value)
+		cy.fill_shipping(testData.email, testData.firstName, testData.lastName, testData.postCode, testData.streetAddress, testData.city, testData.state, testData.country, testData.phone, Order.shipping_value2)
 		
 		cy.get(SHIPPING.PAYMENT.shippingDetails).should('be.visible')
 		cy.contains(testData.firstName).should('be.visible')
