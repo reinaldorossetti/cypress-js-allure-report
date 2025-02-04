@@ -1,11 +1,11 @@
-# 🧪 Test Automation with Cypress & Allure
+# 🧪 Test Automation with Cypress & Mocha Reporter
 
 ![Cypress](https://img.shields.io/badge/Cypress-13.17.0-brightgreen) 
-![Allure](https://img.shields.io/badge/Allure-2.32.0-blue)
+![Mocha](https://img.shields.io/badge/Mocha-9.2.2-blue)
 ![Node.js](https://img.shields.io/badge/Node.js-LTS-yellowgreen)
 
 ## 📌 Overview
-This project is an automated test suite using **Cypress** for end-to-end testing, integrated with **Allure** for test reporting.
+This project is an automated test suite using **Cypress** for end-to-end testing, integrated with **Mocha Reporter** for test reporting.
 
 ---
 
@@ -57,7 +57,7 @@ npm run open
 
 ## 📊 Test Reports
 
-This project uses **Allure Reports** for test reporting.
+This project uses **Mocha Reports** for test reporting.
 
 ### **Generate and View Report**
 ```bash
@@ -65,8 +65,8 @@ npm run report
 ```
 
 🔹 This command will:
-1. Generate a clean **Allure report** from test results.
-2. Open the Allure report in the browser.
+1. Generate a clean **Mocha report** from test results.
+2. Open the Mocha report in the browser.
 
 ---
 
@@ -75,33 +75,38 @@ npm run report
 ```
 📁 project-folder/
 ├── 📁 cypress/
+│   ├── 📁 reports/           # Generated Mocha reports
 │   ├── 📁 e2e/               # Test cases
 │   ├── 📁 fixtures/          # Test data
+│   ├── 📁 screenshots/       # Folder where Cypress screenshots are stored for failed tests.
 │   ├── 📁 support/           # Custom commands & configuration
-├── 📁 allure-results/        # Allure report raw data
-├── 📁 allure-report/         # Generated Allure reports
+├── 📁 mochawesome-report/    # Mocha report raw data      
 ├── 📄 cypress.config.js      # Cypress configuration
 ├── 📄 package.json           # Project dependencies & scripts
 ├── 📄 README.md              # Project documentation
+
 ```
 
 ---
 
 ## 🛠️ Dependencies
+
 | Package                     | Version  |
 |-----------------------------|----------|
 | **Cypress**                 | 13.17.0  |
-| **Allure Cypress Plugin**   | 2.40.2   |
-| **Allure Command Line**     | 2.32.0   |
-| **Playwright WebKit**       | 1.50.1   |
+| **Mocha**                   | 9.2.2    |
+| **mochawesome**             | 7.1.3    |
+| **mochawesome-merge**       | 4.3.0    |
+| **mochawesome-report-generator** | 6.2.0 |
+| **nanoid**                  | 3.1.31+  |
 | **@faker-js/faker**         | 9.4.0    |
-| **jQuery**                  | 3.7.1    |
 
 ---
 
 ## 📌 Notes
+
 - ⚡ Ensure all dependencies are installed before running tests.
-- 🔄 Allure reports should be regenerated before viewing to get updated results.
+- 🔄 Mocha reports should be regenerated before viewing to get updated results.
 - 🖥️ The test execution may vary depending on the selected browser.
 
 🚀 **Happy Testing!** 🎯
