@@ -9,8 +9,6 @@ import { ACCOUNT } from '../e2e/specs/selectors/account'
  * 
  */
 Cypress.Commands.add('add_to_cart', (product_name, value, size, color, quantity = 1) => {
-  cy.get('.product-item-link').contains(product_name).click()
-  cy.get('.product-item-link').contains(product_name).should('not.exist')
 
   cy.contains(product_name).should('be.visible')
   cy.contains(`${value}`).should('be.visible')
@@ -110,4 +108,17 @@ Cypress.Commands.add('login', (email, password) => {
   cy.get(ACCOUNT.LOGIN.password).type(password)
 
   cy.get(ACCOUNT.LOGIN.signInButton).click()
+})
+
+Cypress.Commands.add('navbar_by_category', (category_item, menu_item, product_name) => {
+  cy.get(HOME_PAGE.NAVBAR.productItem).contains(category_item).then(($el)=>{ $el.get(0).scrollIntoView()}).click()
+  cy.get(HOME_PAGE.NAVBAR.categoriesMenu).then(($el)=>{ $el.get(0).scrollIntoView()}).contains(menu_item).click()
+  cy.get(HOME_PAGE.BLOCK_PRODUCTS.productItem).contains(product_name).click()
+  cy.get(HOME_PAGE.BLOCK_PRODUCTS.productItem).contains(product_name).should('not.exist')
+})
+
+Cypress.Commands.add('seach_bar', (product_item, product_name) => {
+  cy.get(HOME_PAGE.BASE.searchInput).then(($el)=>{ $el.get(0).scrollIntoView()}).type(product_item).type('{enter}')
+  cy.get(HOME_PAGE.BLOCK_PRODUCTS.productItem).contains(product_name).click()
+  cy.get(HOME_PAGE.BLOCK_PRODUCTS.productItem).contains(product_name).should('not.exist')
 })
