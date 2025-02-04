@@ -13,7 +13,7 @@ jobs:
         continue-on-error: true
         with:
           browser: chrome
-      - name: Step 3 - Roda o report
+      - name: Step 3 - Run report
         continue-on-error: true
         run: |
           npx mochawesome-merge ./mochawesome-report/*.json > mochawesomeReport_Chrome.json && npx marge ./mochawesomeReport_Chrome.json
@@ -34,7 +34,7 @@ jobs:
         continue-on-error: true
         with:
           browser: firefox
-      - name: Step 3 - Roda o report
+      - name: Step 3 - Run report
         continue-on-error: true
         run: |
           npx mochawesome-merge ./mochawesome-report/*.json > mochawesomeReport_Firefox.json && npx marge ./mochawesomeReport_Firefox.json
@@ -55,7 +55,7 @@ jobs:
         continue-on-error: true
         with:
           browser: edge
-      - name: Step 3 - Roda o report
+      - name: Step 3 - Run report
         continue-on-error: true
         run: |
           npx mochawesome-merge ./mochawesome-report/*.json > mochawesomeReport_Edge.json && npx marge ./mochawesomeReport_Edge.json
@@ -78,7 +78,7 @@ jobs:
         continue-on-error: true
         with:
           command: npx cypress run --browser webkit
-      - name: Step 3 - Roda o report
+      - name: Step 3 - Run report
         continue-on-error: true
         run: |
           npx mochawesome-merge ./mochawesome-report/*.json > mochawesomeReport_Webkit.json && npx marge ./mochawesomeReport_Webkit.json
@@ -99,7 +99,7 @@ jobs:
         continue-on-error: true
         with:
           browser: electron
-      - name: Step 3 - Roda o report
+      - name: Step 3 - Run report
         continue-on-error: true
         run: |
           npx mochawesome-merge ./mochawesome-report/*.json > mochawesomeReport_Electron.json && npx marge ./mochawesomeReport_Electron.json

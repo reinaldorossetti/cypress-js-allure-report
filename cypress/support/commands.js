@@ -2,12 +2,8 @@
 import { HOME_PAGE } from '../e2e/specs/selectors/homePage'
 import { SHIPPING } from '../e2e/specs/selectors/shippingPage'
 import { ACCOUNT } from '../e2e/specs/selectors/account'
+import { ORDERSANDRETURNS } from '../e2e/specs/selectors/ordersAndReturns'
 
-
-/**
- * 
- * 
- */
 Cypress.Commands.add('add_to_cart', (product_name, value, size, color, quantity = 1) => {
 
   cy.contains(product_name).should('be.visible')
@@ -123,4 +119,42 @@ Cypress.Commands.add('navbar_by_category', (category_item, menu_item) => {
 Cypress.Commands.add('seach_bar', (product_name) => {
   cy.get(HOME_PAGE.BASE.searchInput).then(($el)=>{ $el.get(0).scrollIntoView()}).type(product_name).type('{enter}')
   cy.contains(product_name).should('exist')
+})
+
+Cypress.Commands.add('orders_and_returns_email', (orderId, billingLastName, orderBy, email) => {
+  cy.contains('Orders and Returns').should('exist')
+  cy.get(ORDERSANDRETURNS.ordersAndReturns).click()
+
+  cy.contains('Order ID').should('exist')
+  cy.get(ORDERSANDRETURNS.orderId).type(orderId)
+
+  cy.contains('Billing Last Name').should('exist')
+  cy.get(ORDERSANDRETURNS.billingLastName).type(billingLastName)
+
+  cy.contains('Find Order By').should('exist')
+  cy.get(ORDERSANDRETURNS.orderBy).select(orderBy)
+
+  cy.contains('Email').should('exist')
+  cy.get(ORDERSANDRETURNS.email).type(email)
+
+  cy.get(ORDERSANDRETURNS.continueButton).click()
+})
+
+Cypress.Commands.add('orders_and_returns_zip_code', (orderId, billingLastName, orderBy, zipCode) => {
+  cy.contains('Orders and Returns').should('exist')
+  cy.get(ORDERSANDRETURNS.ordersAndReturns).click()
+
+  cy.contains('Order ID').should('exist')
+  cy.get(ORDERSANDRETURNS.orderId).type(orderId)
+
+  cy.contains('Billing Last Name').should('exist')
+  cy.get(ORDERSANDRETURNS.billingLastName).type(billingLastName)
+
+  cy.contains('Find Order By').should('exist')
+  cy.get(ORDERSANDRETURNS.orderBy).select(orderBy)
+
+  cy.contains('Billing ZIP Code').should('exist')
+  cy.get(ORDERSANDRETURNS.zipCode).type(zipCode)
+
+  cy.get(ORDERSANDRETURNS.continueButton).click()
 })

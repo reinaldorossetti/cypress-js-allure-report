@@ -12,11 +12,12 @@ module.exports = defineConfig({
   reporter: 'mochawesome',
   reporterOptions: {
     // disable overwrite to generate many JSON reports
-    "overwrite": false,
+    "overwrite": true,
     // do not generate intermediate HTML reports
-    "html": false,
+    "html": true,
     // generate intermediate JSON reports
-    "json": true,
+    "json": false,
+    reportDir: "cypress/reports",
     reportFilename: "mochawesomeReport_[datetime]-[name]",
     timestamp: "longDate"
   },

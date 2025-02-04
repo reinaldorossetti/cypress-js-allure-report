@@ -16,8 +16,13 @@ const DataShipping = () => {
 		phone : faker.phone.number(),
 		incorrectEmail: 'test@test.com',
 		incorrectPassword: '12345678',
+		incorrectOrder: '1234',
 		emptyEmail: ' ',
-		emptyPassword: ' '
+		emptyPassword: ' ',
+		emptyOrder: ' ',
+		emptylastName: ' ',
+		emailSelect: "Email",
+		zipCodeSelect: "ZIP Code"
 	};
 	return data;
 }
