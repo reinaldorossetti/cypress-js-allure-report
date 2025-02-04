@@ -1,96 +1,108 @@
-Test Automation with Cypress & Allure
+# 🧪 Test Automation with Cypress & Allure
 
-📌 Overview
+![Cypress](https://img.shields.io/badge/Cypress-13.17.0-brightgreen) 
+![Allure](https://img.shields.io/badge/Allure-2.32.0-blue)
+![Node.js](https://img.shields.io/badge/Node.js-LTS-yellowgreen)
 
-This project is an automated test suite using Cypress for end-to-end testing, integrated with Allure for test reporting.
+## 📌 Overview
+This project is an automated test suite using **Cypress** for end-to-end testing, integrated with **Allure** for test reporting.
 
-🛠️ Setup & Installation
+---
 
-1. Prerequisites
+## 🛠️ Setup & Installation
 
-Node.js (LTS version recommended)
+### **1. Prerequisites**
+- ✅ Node.js (LTS version recommended)
+- ✅ npm or yarn
 
-npm or yarn
-
-2. Clone the Repository
-
+### **2. Clone the Repository**
+```bash
 git clone <repo-url>
 cd <project-folder>
+```
 
-3. Install Dependencies
-
+### **3. Install Dependencies**
+```bash
 npm install
+```
 
-🚀 Running the Tests
+---
 
-Run Cypress in Different Browsers
+## 🚀 Running the Tests
 
-Google Chrome:
+### **Run Cypress in Different Browsers**
+- 🟢 **Google Chrome:**
+  ```bash
+  npm run tests-chrome
+  ```
+- 🔵 **Microsoft Edge:**
+  ```bash
+  npm run tests-edge
+  ```
+- 🟠 **Mozilla Firefox:**
+  ```bash
+  npm run tests-firefox
+  ```
+- 🍏 **WebKit (via Playwright):**
+  ```bash
+  npm run tests-webkit
+  ```
 
-npm run tests-chrome
-
-Microsoft Edge:
-
-npm run tests-edge
-
-Mozilla Firefox:
-
-npm run tests-firefox
-
-WebKit (via Playwright):
-
-npm run tests-webkit
-
-Open Cypress Test Runner
-
+### **Open Cypress Test Runner**
+```bash
 npm run open
+```
 
-📊 Test Reports
+---
 
-This project uses Allure Reports for test reporting.
+## 📊 Test Reports
 
-Generate and View Report
+This project uses **Allure Reports** for test reporting.
 
+### **Generate and View Report**
+```bash
 npm run report
+```
 
-This command will:
+🔹 This command will:
+1. Generate a clean **Allure report** from test results.
+2. Open the Allure report in the browser.
 
-Generate a clean Allure report from test results.
+---
 
-Open the Allure report in the browser.
+## 📂 Project Structure
 
-📂 Project Structure
+```
+📁 project-folder/
+├── 📁 cypress/
+│   ├── 📁 e2e/               # Test cases
+│   ├── 📁 fixtures/          # Test data
+│   ├── 📁 support/           # Custom commands & configuration
+├── 📁 allure-results/        # Allure report raw data
+├── 📁 allure-report/         # Generated Allure reports
+├── 📄 cypress.config.js      # Cypress configuration
+├── 📄 package.json           # Project dependencies & scripts
+├── 📄 README.md              # Project documentation
+```
 
-├── cypress/
-│   ├── e2e/               # Test cases
-│   ├── fixtures/          # Test data
-│   ├── support/           # Custom commands & configuration
-├── allure-results/        # Allure report raw data
-├── allure-report/         # Generated Allure reports
-├── cypress.config.js      # Cypress configuration
-├── package.json           # Project dependencies & scripts
-├── README.md              # Project documentation
+---
 
-🛠️ Dependencies
+## 🛠️ Dependencies
+| Package                     | Version  |
+|-----------------------------|----------|
+| **Cypress**                 | 13.17.0  |
+| **Allure Cypress Plugin**   | 2.40.2   |
+| **Allure Command Line**     | 2.32.0   |
+| **Playwright WebKit**       | 1.50.1   |
+| **@faker-js/faker**         | 9.4.0    |
+| **jQuery**                  | 3.7.1    |
 
-Cypress: v13.17.0
+---
 
-Allure Cypress Plugin: v2.40.2
+## 📌 Notes
+- ⚡ Ensure all dependencies are installed before running tests.
+- 🔄 Allure reports should be regenerated before viewing to get updated results.
+- 🖥️ The test execution may vary depending on the selected browser.
 
-Allure Command Line: v2.32.0
+🚀 **Happy Testing!** 🎯
 
-Playwright WebKit: v1.50.1
-
-@faker-js/faker: v9.4.0
-
-jQuery: v3.7.1
-
-📌 Notes
-
-Ensure all dependencies are installed before running tests.
-
-Allure reports should be regenerated before viewing to get updated results.
-
-The test execution may vary depending on the selected browser.
-
-Happy Testing! 🚀
