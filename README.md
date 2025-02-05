@@ -50,7 +50,7 @@ npm install
 
 ### **Open Cypress Test Runner**
 ```bash
-npm run open
+npm run report
 ```
 
 ---
@@ -61,7 +61,7 @@ This project uses **Mocha Reports** for test reporting.
 
 ### **Generate and View Report**
 ```bash
-npx cypress run
+npm 
 ```
 
 🔹 This command will:
