@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-# Cypress Project with Mocha Reporter
-
-Este projeto utiliza **Cypress** para automação de testes e **Mocha Reporter** para gerar relatórios detalhados após a execução dos testes. Os relatórios gerados ficam armazenados na pasta `cypress/reports`.
-=======
 # 🧪 Test Automation with Cypress & Mocha Reporter
 
 ![Cypress](https://img.shields.io/badge/Cypress-13.17.0-brightgreen) 
@@ -11,7 +6,6 @@ Este projeto utiliza **Cypress** para automação de testes e **Mocha Reporter**
 
 ## 📌 Overview
 This project is an automated test suite using **Cypress** for end-to-end testing, integrated with **Mocha Reporter** for test reporting.
->>>>>>> 8311f36288ea004c64311fdd7487e5abf2d57709
 
 ---
 
@@ -32,8 +26,6 @@ Certifique-se de ter as dependências do projeto instaladas. Execute o comando a
 
 ```sh
 npm install
-<<<<<<< HEAD
-=======
 ```
 
 ---
@@ -121,4 +113,3 @@ npm
 
 🚀 **Happy Testing!** 🎯
 
->>>>>>> 8311f36288ea004c64311fdd7487e5abf2d57709
