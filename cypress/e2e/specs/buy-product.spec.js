@@ -38,7 +38,9 @@ describe('Purchase functionalities', () => {
 		cy.contains(`${Order.valueItensTotal2}`).should('be.visible')
 		cy.get(MINICART.miniCartProductItemName).should('be.visible').contains(Order.product_name2)
 		cy.get(MINICART.miniCartProductItemPrice).should('be.visible').contains(Order.valueItem2)
-
+		cy.get(MINICART.miniCartDetails).should('be.visible').click()
+		cy.get(MINICART.miniCartValues).should('be.visible').contains(Order.size)
+		cy.get(MINICART.miniCartValues).should('be.visible').contains(Order.color2)
 		cy.get(MINICART.miniCartDropDownProceedToCheckout).click()
 		cy.url().should('include', 'checkout/#shipping')
 
@@ -99,7 +101,9 @@ describe('Purchase functionalities', () => {
 		cy.contains(`${Order.valueItensTotal3}`).should('be.visible')
 		cy.get(MINICART.miniCartProductItemName).should('be.visible').contains(Order.product_name3)
 		cy.get(MINICART.miniCartProductItemPrice).should('be.visible').contains(Order.valueItem3)
-
+		cy.get(MINICART.miniCartDetails).should('be.visible').click()
+		cy.get(MINICART.miniCartValues).should('be.visible').contains(Order.size2)
+		cy.get(MINICART.miniCartValues).should('be.visible').contains(Order.color3)
 		cy.get(MINICART.miniCartDropDownProceedToCheckout).click()
 		cy.url().should('include', 'checkout/#shipping')
 
@@ -127,7 +131,7 @@ describe('Purchase functionalities', () => {
 		cy.contains('Create an Account').should('be.visible')
 	})
 
-	it.only('TC03 - Add 2 itens by Home Page to cart and complete the order' , () => {
+	it('TC03 - Add 2 itens by Home Page to cart and complete the order' , () => {
 
 		cy.find_product_name(Order.product_name)
 		cy.add_to_cart(Order.product_name, Order.valueItem, Order.size, Order.color, Order.quantity)
@@ -148,7 +152,9 @@ describe('Purchase functionalities', () => {
 		cy.contains(`${Order.valueItensTotal}`).should('be.visible')
 		cy.get(MINICART.miniCartProductItemName).should('be.visible').contains(Order.product_name)
 		cy.get(MINICART.miniCartProductItemPrice).should('be.visible').contains(Order.valueItem)
-
+		cy.get(MINICART.miniCartDetails).should('be.visible').click()
+		cy.get(MINICART.miniCartValues).should('be.visible').contains(Order.size)
+		cy.get(MINICART.miniCartValues).should('be.visible').contains(Order.color)
 		cy.get(MINICART.miniCartDropDownProceedToCheckout).click()
 		cy.url().should('include', 'checkout/#shipping')
 		

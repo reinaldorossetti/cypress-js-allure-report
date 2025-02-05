@@ -1,5 +1,8 @@
 const { defineConfig } = require("cypress");
 
+function getBrowserName() {
+  return (process.env.BROWSER || 'browser').toLowerCase();
+}
 
 module.exports = defineConfig({
   viewportWidth: 1440,
@@ -14,11 +17,11 @@ module.exports = defineConfig({
     // disable overwrite to generate many JSON reports
     "overwrite": true,
     // do not generate intermediate HTML reports
-    "html": true,
+    "html": false,
     // generate intermediate JSON reports
-    "json": false,
-    reportDir: "cypress/reports",
-    reportFilename: "mochawesomeReport_[datetime]-[name]",
+    "json": true,
+    reportDir: "mochawesome-report",
+    reportFilename: `mochawesomeReport_${getBrowserName()}_[datetime]-[name]`,
     timestamp: "longDate"
   },
 

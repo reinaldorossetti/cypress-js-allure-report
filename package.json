@@ -1,12 +1,11 @@
 {
   "scripts": {
-    "tests-chrome": "cypress run --env video=true --browser chrome",
+    "tests-chrome": "cypress run --env video=true --env BROWSER=chrome --browser chrome",
     "tests-edge": "cypress run --env video=true --browser edge",
     "tests-firefox": "cypress run --env video=true --browser firefox",
     "tests-webkit": "npx cypress run --browser webkit",
     "open": "cypress open",
-    "report": "npx mochawesome-merge ./mochawesome-report/*.json > mochawesomeReport.json && npx marge ./mochawesomeReport.json",
-    "test:report": "cypress run && npx mochawesome-merge cypress/reports/*.json -o cypress/reports/output.json && npx marge cypress/reports/output.json -o cypress/reports"
+    "report": "npx mochawesome-merge ./mochawesome-report/*.json > mochawesomeReport.json && npx marge ./mochawesomeReport.json"
   },
   "dependencies": {
     "@faker-js/faker": "^9.4.0",

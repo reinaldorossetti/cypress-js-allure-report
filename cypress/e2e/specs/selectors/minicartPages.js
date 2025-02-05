@@ -13,5 +13,6 @@ export const MINICART = {
 	miniCartDropDownProceedToCheckout: '#top-cart-btn-checkout',
 	miniCartProductItemName: '#ui-id-1 .product-item-name a',
 	miniCartProductItemPrice: '#ui-id-1 .minicart-price',
-
+	miniCartDetails: '.product-item-details [data-role="title"]',
+	miniCartValues: '.product-item-details .values [data-bind~="option.value"]'
 }
